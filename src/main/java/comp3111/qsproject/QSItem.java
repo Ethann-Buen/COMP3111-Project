@@ -37,8 +37,7 @@ public class QSItem {
         facultyCount = string_line[14];
     }
 
-    public String getRank() {
-        return rank;
+    public String getRank() { return rank;
     }
 
     public String getName() { return name; }
