@@ -3,7 +3,6 @@ package comp3111.qsproject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
-import java.util.Random;
 
 import java.util.*;
 
@@ -20,12 +19,6 @@ public class T21Analysis {
             Sort university lists by the years.
             Hint: QSList.list is a static property.
          */
-    }
-
-    static public List<String> sortUniversityYears(List<String> years) {
-        List<String> result = new ArrayList<>(years);
-        Collections.sort(result);
-        return result;
     }
 
     XYChart.Series<Double, String> getBarChartData(String searchName) {
