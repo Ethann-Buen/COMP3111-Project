@@ -19,6 +19,22 @@ public class T21Analysis {
             Sort university lists by the years.
             Hint: QSList.list is a static property.
          */
+        University1Name = uni_1;
+        University2Name = uni_2;
+        for (QSItem item: QSList.list) {
+            String uni = item.getProperty("university");
+            String yr = item.getProperty("year");
+            if (years.contains(yr)) {
+                if (uni == uni_1) {
+                    University1List.add(item);
+                }
+                if (uni == uni_2) {
+                    University2List.add(item);
+                }
+            }
+        }
+        University1List.sort(Comparator.comparing(item -> item.getProperty("year")));
+        University2List.sort(Comparator.comparing(item -> item.getProperty("year")));
     }
 
     XYChart.Series<Double, String> getBarChartData(String searchName) {
