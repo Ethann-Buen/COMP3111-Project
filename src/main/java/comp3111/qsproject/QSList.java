@@ -33,7 +33,7 @@ public class QSList {
             csvReader = new CsvReader(file);
             try {
                 csvReader.readHeaders();
-                int fieldCount = csvReader.getColumnCount();
+                int fieldCount = csvReader.getHeaderCount();
                 while (csvReader.readRecord()) {
                     String[] row = new String[fieldCount];
                     for (int i = 0; i < fieldCount; i++) {
@@ -62,7 +62,5 @@ public class QSList {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 }
