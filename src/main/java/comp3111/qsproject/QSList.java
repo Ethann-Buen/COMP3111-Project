@@ -43,13 +43,24 @@ public class QSList {
                     list.add(qsData);
 
                     String qsUniversity = csvReader.get("university");
-                    university.add(qsUniversity);
+                    if (!university.contains(qsUniversity)) {
+                        university.add(qsUniversity);
+                    }
+
                     String qsType = csvReader.get("type");
-                    type.add(qsType);
+                    if (!type.contains(qsType)) {
+                        type.add(qsType);
+                    }
+
                     String qsRegion = csvReader.get("region");
-                    region.add(qsRegion);
+                    if (!region.contains(qsRegion)) {
+                        region.add(qsRegion);
+                    }
+
                     String qsCountry = csvReader.get("country");
-                    country.add(qsCountry);
+                    if (!country.contains(qsCountry)) {
+                        country.add(qsCountry);
+                    }
                 }
             }
             catch (IOException e) {

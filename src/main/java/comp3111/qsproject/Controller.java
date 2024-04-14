@@ -6,9 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
@@ -174,6 +176,18 @@ public class Controller {
             3. For choice boxes of country/region,
                 you need to add a blank or "All" option representing selection of all the country/region.
          */
+        t2University1ChoiceBox.getItems().addAll(QSList.university);
+        t2University2ChoiceBox.getItems().addAll(QSList.university);
+
+        t2CountryRegion1ChoiceBox.getItems().add("--");
+        t2CountryRegion1ChoiceBox.getItems().add("All");
+        t2CountryRegion1ChoiceBox.getItems().addAll(QSList.country);
+        t2CountryRegion1ChoiceBox.getItems().addAll(QSList.region);
+
+        t2CountryRegion2ChoiceBox.getItems().add("--");
+        t2CountryRegion2ChoiceBox.getItems().add("All");
+        t2CountryRegion2ChoiceBox.getItems().addAll(QSList.country);
+        t2CountryRegion2ChoiceBox.getItems().addAll(QSList.region);
         // T3
         /*
             Your Code Here.
