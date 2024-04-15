@@ -62,6 +62,10 @@ public class QSList {
                         country.add(qsCountry);
                     }
                 }
+                FXCollections.sort(university);
+                FXCollections.sort(type);
+                FXCollections.sort(region);
+                FXCollections.sort(country);
             }
             catch (IOException e) {
                 e.printStackTrace();

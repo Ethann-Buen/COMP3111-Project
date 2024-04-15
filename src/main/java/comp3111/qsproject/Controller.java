@@ -239,6 +239,34 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        String uni_1 = t2University1ChoiceBox.getValue();
+        String uni_2 = t2University2ChoiceBox.getValue();
+
+        List<String> years = new ArrayList<>();
+
+        CheckBox[] checkBoxes = {
+                t22017CheckBox,
+                t22018CheckBox,
+                t22019CheckBox,
+                t22020CheckBox,
+                t22021CheckBox,
+                t22022CheckBox};
+
+        for (int i = 0; i < yearList.size(); i++) {
+            CheckBox curBox = checkBoxes[i];
+            String curYear = yearList.get(i);
+            curBox.setOnAction(event -> {
+                if (curBox.isSelected()) {
+                    years.add(curYear);
+                }
+                else {
+                    years.remove(curYear);
+                }
+            });
+        }
+
+        T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
+//        analyzer.getBarChartData();
     }
 
     @FXML

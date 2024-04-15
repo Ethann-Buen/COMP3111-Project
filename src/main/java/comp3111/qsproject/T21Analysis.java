@@ -54,6 +54,40 @@ public class T21Analysis {
             For example, the string "3,143" or "3.143" can not transfer to Integer or Double directly.
             Careful process these data.
          */
+        double[] uni_1 = new double[University1List.size()];
+        double[] uni_2 = new double[University2List.size()];
+
+        for (QSItem item : University1List) {
+            String property = item.getProperty(searchName);
+            // Integral properties
+            if (searchName == "international_students" || searchName == "faculty_count") {
+                property = property.replace(",", "").replace(".", "");
+            }
+            // Float properties
+            else if (searchName == "score") {
+                property = property.replace(",", "");
+            }
+        }
+
+        double average1 = 0;
+        double average2 = 0;
+        for (double data : uni_1) {
+            average1 += data;
+        }
+        average1 /= uni_1.length;
+
+        for (double data : uni_2) {
+            average2 += data;
+        }
+        average2 /= uni_2.length;
+
+        barData.getData().add(new XYChart.Data<>(average1, "University 1"));
+        barData.getData().add(new XYChart.Data<>(average2, "University 2"));
+
+        
+
+
+
         return barData;
     }
 
