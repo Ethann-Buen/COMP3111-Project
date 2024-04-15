@@ -27,6 +27,16 @@ public class RecommendItem {
             1. Update the best rank and the corresponding year.
             2. Update the most recent year and the corresponding rank.
          */
+        //if curr rank < recorded rank then update
+        if(item.getRank().compareTo(bestRank) < 0){
+            bestYear = item.year;
+            bestRank = item.rank;
+        }
+        //if curr year > recorded year then update
+        if(item.getYear().compareTo(recentYear) > 0 ){
+            recentYear = item.year;
+            recentRank = item.rank;
+        }
     }
 
     public String getName() { return name; }

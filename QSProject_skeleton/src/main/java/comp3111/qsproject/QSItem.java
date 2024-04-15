@@ -51,6 +51,10 @@ public class QSItem {
 
     public String getType() { return type; }
 
+    public String getRegion() { return region; }
+
+    public String getYear() { return year; }
+
     public String getResearchOutput() { return researchOutput; }
 
     public String getStudentFacultyRatio() {return  studentFacultyRatio; }

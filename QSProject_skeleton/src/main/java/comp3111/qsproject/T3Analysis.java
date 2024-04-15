@@ -16,8 +16,31 @@ public class T3Analysis {
             Your Code Here.
             Collect the QSItem which fit the score range, type and region into the RecommendItem.
             Sort the RecommendList by bestRank.
-            Hint: QSList.list is a static property and you can use "update" function in RecommendItem.
+            Hint: QSList.list is a static property, and you can use "update" function in RecommendItem.
          */
+        boolean updated = false;
+        for (QSItem item: QSList.list) {
+            if(item.getRank().compareTo(top_input) < 0 && item.getRank().compareTo(bottom_input) > 0){
+                String uni_type = item.getType();
+                String uni_region = item.getRegion();
+                if(uni_type.equals(type) && uni_region.equals((region))){
+                //update best rank if this uni is already a RecommendItem
+                    for(RecommendItem recommendItem: RecommendList){
+                        if(recommendItem.getName().equals(item.getName())&&!updated) {
+                            recommendItem.update(item);
+                            updated = true;
+                        }
+                    }
+                //create new item if the uni first appear
+                    if(!updated){
+                        RecommendItem recommendItem = new RecommendItem(item);
+                        RecommendList.add(recommendItem);
+                    }
+                    updated = false;
+                }
+            }
+        }
+        RecommendList.sort(Comparator.comparing(RecommendItem::getBestRank));
     }
 
     ObservableList<RecommendItem> getRecommendData() {
