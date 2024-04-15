@@ -18,6 +18,7 @@ public class T3Analysis {
             Sort the RecommendList by bestRank.
             Hint: QSList.list is a static property, and you can use "update" function in RecommendItem.
          */
+        RecommendList.clear();
         boolean updated = false;
         for (QSItem item: QSList.list) {
             if(item.getRank().compareTo(top_input) < 0 && item.getRank().compareTo(bottom_input) > 0){
