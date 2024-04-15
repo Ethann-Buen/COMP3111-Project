@@ -225,6 +225,23 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.1. (including the choice boxes, check boxes and charts)
          */
+        t2University1ChoiceBox.getSelectionModel().clearSelection();
+        t2University2ChoiceBox.getSelectionModel().clearSelection();
+
+        t22017CheckBox.setSelected(false);
+        t22018CheckBox.setSelected(false);
+        t22019CheckBox.setSelected(false);
+        t22020CheckBox.setSelected(false);
+        t22021CheckBox.setSelected(false);
+        t22022CheckBox.setSelected(false);
+
+        t21RankBarChart.getData().clear();
+        t21ScoreBarChart.getData().clear();
+        t21FacultyBarChart.getData().clear();
+        t21InternationalBarChart.getData().clear();
+        t21SFRBarChart.getData().clear();
+
+        t21LineChart.getData().clear();
     }
 
     @FXML
