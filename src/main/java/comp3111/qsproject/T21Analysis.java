@@ -22,13 +22,13 @@ public class T21Analysis {
         University1Name = uni_1;
         University2Name = uni_2;
         for (QSItem item: QSList.list) {
-            String uni = item.getProperty("university");
+            String uni = item.getProperty("name");
             String yr = item.getProperty("year");
             if (years.contains(yr)) {
-                if (uni == uni_1) {
+                if (uni.equals(uni_1)) {
                     University1List.add(item);
                 }
-                if (uni == uni_2) {
+                if (uni.equals(uni_2)) {
                     University2List.add(item);
                 }
             }
@@ -54,23 +54,42 @@ public class T21Analysis {
             For example, the string "3,143" or "3.143" can not transfer to Integer or Double directly.
             Careful process these data.
          */
-        double[] uni_1 = new double[University1List.size()];
-        double[] uni_2 = new double[University2List.size()];
-
-        for (QSItem item : University1List) {
-            String property = item.getProperty(searchName);
+        Double[] uni_1 = new Double[University1List.size()];
+        Double[] uni_2 = new Double[University2List.size()];
+//        System.out.println("property: " + searchName);
+        // University 1
+        for (int i = 0; i < University1List.size(); i++) {
+            String property = University1List.get(i).getProperty(searchName);
             // Integral properties
-            if (searchName == "international_students" || searchName == "faculty_count") {
+            if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
                 property = property.replace(",", "").replace(".", "");
             }
             // Float properties
-            else if (searchName == "score") {
+            else if (searchName.equals("score")) {
                 property = property.replace(",", "");
             }
+            uni_1[i] = Double.parseDouble(property);
+//            System.out.println("uni 1 data: " + uni_1[i]);
         }
 
-        double average1 = 0;
-        double average2 = 0;
+        // University 2
+        for (int i = 0; i < University2List.size(); i++) {
+            String property = University2List.get(i).getProperty(searchName);
+            // Integral properties
+            if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
+                property = property.replace(",", "").replace(".", "");
+            }
+            // Float properties
+            else if (searchName.equals("score")) {
+                property = property.replace(",", "");
+            }
+            uni_2[i] = Double.parseDouble(property);
+//            System.out.println("uni 2 data: " + uni_2[i]);
+        }
+
+        Double average1 = 0.0;
+        Double average2 = 0.0;
+
         for (double data : uni_1) {
             average1 += data;
         }
@@ -83,11 +102,7 @@ public class T21Analysis {
 
         barData.getData().add(new XYChart.Data<>(average1, "University 1"));
         barData.getData().add(new XYChart.Data<>(average2, "University 2"));
-
-        
-
-
-
+//        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
 

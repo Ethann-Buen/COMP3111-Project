@@ -252,21 +252,28 @@ public class Controller {
                 t22021CheckBox,
                 t22022CheckBox};
 
-        for (int i = 0; i < yearList.size(); i++) {
+        for (int i = 0; i < checkBoxes.length; i++) {
             CheckBox curBox = checkBoxes[i];
             String curYear = yearList.get(i);
-            curBox.setOnAction(event -> {
-                if (curBox.isSelected()) {
-                    years.add(curYear);
-                }
-                else {
-                    years.remove(curYear);
-                }
-            });
+            if (curBox.isSelected()) {
+                years.add(curYear);
+            }
         }
 
+        String[] properties = {"rank", "score", "facultyCount", "internationalStudents", "studentFacultyRatio"};
+        BarChart<Double, String>[] charts = new BarChart[]{
+                t21RankBarChart,
+                t21ScoreBarChart,
+                t21FacultyBarChart,
+                t21InternationalBarChart,
+                t21SFRBarChart};
+
         T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
-//        analyzer.getBarChartData();
+
+//        t21RankBarChart.getData().add(analyzer.getBarChartData("rank"));
+        for (int i = 0; i < properties.length; i++) {
+            charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+        }
     }
 
     @FXML
