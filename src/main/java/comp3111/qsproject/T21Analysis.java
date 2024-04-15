@@ -100,8 +100,8 @@ public class T21Analysis {
         }
         average2 /= uni_2.length;
 
-        barData.getData().add(new XYChart.Data<>(average1, "University 1"));
-        barData.getData().add(new XYChart.Data<>(average2, "University 2"));
+        barData.getData().add(new XYChart.Data<>(average1, University1Name));
+        barData.getData().add(new XYChart.Data<>(average2, University2Name));
 //        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
@@ -122,6 +122,25 @@ public class T21Analysis {
             For example, the string "3,143" or "3.143" can not transfer to Integer or Double directly.
             Careful process these data.
          */
+        // University 1
+        XYChart.Series<String, Double> uniScores1 = new XYChart.Series<>();
+        uniScores1.setName(University1Name);
+        for (QSItem qsItem : University1List) {
+            String year = qsItem.getProperty("year");
+            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            uniScores1.getData().add(new XYChart.Data<>(year, score));
+        }
+        lineData.add(uniScores1);
+        // University 2
+        XYChart.Series<String, Double> uniScores2 = new XYChart.Series<>();
+        uniScores2.setName(University2Name);
+        for (QSItem qsItem : University2List) {
+            String year = qsItem.getProperty("year");
+            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            uniScores2.getData().add(new XYChart.Data<>(year, score));
+        }
+        lineData.add(uniScores2);
+
         return lineData;
     }
 }

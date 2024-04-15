@@ -241,9 +241,7 @@ public class Controller {
          */
         String uni_1 = t2University1ChoiceBox.getValue();
         String uni_2 = t2University2ChoiceBox.getValue();
-
         List<String> years = new ArrayList<>();
-
         CheckBox[] checkBoxes = {
                 t22017CheckBox,
                 t22018CheckBox,
@@ -270,9 +268,13 @@ public class Controller {
 
         T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
 
-//        t21RankBarChart.getData().add(analyzer.getBarChartData("rank"));
         for (int i = 0; i < properties.length; i++) {
             charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+        }
+
+        List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+        for (XYChart.Series<String, Double> line : lineData) {
+            t21LineChart.getData().add(line);
         }
     }
 
@@ -296,6 +298,26 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        String country_region1 = t2CountryRegion1ChoiceBox.getValue();
+        String country_region2 = t2CountryRegion2ChoiceBox.getValue();
+
+        List<String> years = new ArrayList<>();
+
+        CheckBox[] checkBoxes = {
+                t22017CheckBox2,
+                t22018CheckBox2,
+                t22019CheckBox2,
+                t22020CheckBox2,
+                t22021CheckBox2,
+                t22022CheckBox2};
+
+        for (int i = 0; i < checkBoxes.length; i++) {
+            CheckBox curBox = checkBoxes[i];
+            String curYear = yearList.get(i);
+            if (curBox.isSelected()) {
+                years.add(curYear);
+            }
+        }
     }
 
     @FXML
