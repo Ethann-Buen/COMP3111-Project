@@ -19,6 +19,23 @@ public class T22Analysis {
             Sort country/region lists by the years.
             Hint: QSList.list is a static property.
          */
+        CountryRegion1Name = country_region_1;
+        CountryRegion2Name = country_region_2;
+        for (QSItem item: QSList.list) {
+            String country = item.getProperty("country");
+            String region = item.getProperty("region");
+            String yr = item.getProperty("year");
+            if (years.contains(yr)) {
+                if (country.equals(country_region_1) || region.equals(country_region_1)) {
+                    CountryRegion1List.add(item);
+                }
+                if (country.equals(country_region_2) || region.equals(country_region_2)) {
+                    CountryRegion2List.add(item);
+                }
+            }
+        }
+        CountryRegion1List.sort(Comparator.comparing(item -> item.getProperty("year")));
+        CountryRegion2List.sort(Comparator.comparing(item -> item.getProperty("year")));
     }
 
     XYChart.Series<Double, String> getBarChartData(String searchName) {
@@ -38,6 +55,56 @@ public class T22Analysis {
             For example, the string "3,143" or "3.143" can not transfer to Integer or Double directly.
             Careful process these data.
          */
+        Double[] country_region_1 = new Double[CountryRegion1List.size()];
+        Double[] country_region_2 = new Double[CountryRegion2List.size()];
+        System.out.println("property: " + searchName);
+        // Country/Region 1
+        for (int i = 0; i < CountryRegion1List.size(); i++) {
+            String property = CountryRegion1List.get(i).getProperty(searchName);
+            // Integral properties
+            if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
+                property = property.replace(",", "").replace(".", "");
+            }
+            // Float properties
+            else if (searchName.equals("score")) {
+                property = property.replace(",", "");
+            }
+            country_region_1[i] = Double.parseDouble(property);
+            System.out.println("country 1 data: " + country_region_1[i]);
+        }
+
+        // University 2
+        for (int i = 0; i < CountryRegion2List.size(); i++) {
+            String property = CountryRegion2List.get(i).getProperty(searchName);
+            // Integral properties
+            if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
+                property = property.replace(",", "").replace(".", "");
+            }
+            // Float properties
+            else if (searchName.equals("score")) {
+                property = property.replace(",", "");
+            }
+            country_region_2[i] = Double.parseDouble(property);
+            System.out.println("country 2 data: " + country_region_2[i]);
+        }
+
+        Double average1 = 0.0;
+        Double average2 = 0.0;
+
+        for (double data : country_region_1) {
+            average1 += data;
+        }
+        average1 /= country_region_1.length;
+
+        for (double data : country_region_2) {
+            average2 += data;
+        }
+        average2 /= country_region_2.length;
+
+        barData.getData().add(new XYChart.Data<>(average1, CountryRegion1Name));
+        barData.getData().add(new XYChart.Data<>(average2, CountryRegion2Name));
+        System.out.println("average 1: " + average1 + " average 2: " + average2);
+
         return barData;
     }
 
@@ -57,6 +124,47 @@ public class T22Analysis {
             For example, the string "3,143" or "3.143" can not transfer to Integer or Double directly.
             Careful process these data.
          */
+//        String[] years = new String[]{"2017, 2018, 2019, 2020, 2021, 2022"};
+
+        // University 1
+        XYChart.Series<String, Double> countryRegionScores1 = new XYChart.Series<>();
+        countryRegionScores1.setName(CountryRegion1Name);
+//        Double[] sums1 = new Double[6]; // Array to store the sums for each year
+        for (QSItem qsItem : CountryRegion1List) {
+            String year = qsItem.getProperty("year");
+            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+//            for (int i = 0; i < years.length; i++) {
+//                if (year.equals(years[i])) {
+//                    sums1[i] += score;
+//                }
+//            }
+            countryRegionScores1.getData().add(new XYChart.Data<>(year, score));
+//            System.out.println("country 1: " + "year: " + year);
+        }
+//        for (int i = 0; i < years.length; i++) {
+//            countryRegionScores1.getData().add(new XYChart.Data<>(years[i], sums1[i]));
+//        }
+        lineData.add(countryRegionScores1);
+
+        // University 2
+        XYChart.Series<String, Double> countryRegionScores2 = new XYChart.Series<>();
+        countryRegionScores2.setName(CountryRegion2Name);
+//        Double[] sums2 = new Double[6]; // Array to store the sums for each year
+        for (QSItem qsItem : CountryRegion2List) {
+            String year = qsItem.getProperty("year");
+            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+//            for (int i = 0; i < years.length; i++) {
+//                if (year.equals(years[i])) {
+//                    sums2[i] += score;
+//                }
+//            }
+            countryRegionScores2.getData().add(new XYChart.Data<>(year, score));
+        }
+//        for (int i = 0; i < years.length; i++) {
+//            countryRegionScores1.getData().add(new XYChart.Data<>(years[i], sums2[i]));
+//        }
+        lineData.add(countryRegionScores2);
+
         return lineData;
     }
 }

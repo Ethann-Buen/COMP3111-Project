@@ -301,6 +301,23 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.2. (including the choice boxes, check boxes and charts)
          */
+        t2CountryRegion1ChoiceBox.getSelectionModel().clearSelection();
+        t2CountryRegion2ChoiceBox.getSelectionModel().clearSelection();
+
+        t22017CheckBox2.setSelected(false);
+        t22018CheckBox2.setSelected(false);
+        t22019CheckBox2.setSelected(false);
+        t22020CheckBox2.setSelected(false);
+        t22021CheckBox2.setSelected(false);
+        t22022CheckBox2.setSelected(false);
+
+        t22RankBarChart.getData().clear();
+        t22ScoreBarChart.getData().clear();
+        t22FacultyBarChart.getData().clear();
+        t22InternationalBarChart.getData().clear();
+        t22SFRBarChart.getData().clear();
+
+        t22LineChart.getData().clear();
     }
 
     @FXML
@@ -315,8 +332,8 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
-        String country_region1 = t2CountryRegion1ChoiceBox.getValue();
-        String country_region2 = t2CountryRegion2ChoiceBox.getValue();
+        String country_region_1 = t2CountryRegion1ChoiceBox.getValue();
+        String country_region_2 = t2CountryRegion2ChoiceBox.getValue();
 
         List<String> years = new ArrayList<>();
 
@@ -334,6 +351,25 @@ public class Controller {
             if (curBox.isSelected()) {
                 years.add(curYear);
             }
+        }
+
+        String[] properties = {"rank", "score", "facultyCount", "internationalStudents", "studentFacultyRatio"};
+        BarChart<Double, String>[] charts = new BarChart[]{
+                t22RankBarChart,
+                t22ScoreBarChart,
+                t22FacultyBarChart,
+                t22InternationalBarChart,
+                t22SFRBarChart};
+
+        T22Analysis analyzer = new T22Analysis(country_region_1, country_region_2, years);
+
+        for (int i = 0; i < properties.length; i++) {
+            charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+        }
+
+        List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+        for (XYChart.Series<String, Double> line : lineData) {
+            t22LineChart.getData().add(line);
         }
     }
 
