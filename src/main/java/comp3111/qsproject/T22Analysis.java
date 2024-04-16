@@ -65,6 +65,7 @@ public class T22Analysis {
         Double[] country_region_2 = new Double[CountryRegion2List.size()];
 //        System.out.println("property: " + searchName);
         // Country/Region 1
+        int invalidCount1 = 0;
         for (int i = 0; i < CountryRegion1List.size(); i++) {
             String property = CountryRegion1List.get(i).getProperty(searchName);
             // Integral properties
@@ -75,11 +76,18 @@ public class T22Analysis {
             else if (searchName.equals("score")) {
                 property = property.replace(",", "");
             }
-            country_region_1[i] = Double.parseDouble(property);
+            if (property.isEmpty()) {
+                country_region_1[i] = 0.0;
+                invalidCount1 += 1;
+            }
+            else {
+                country_region_1[i] = Double.parseDouble(property);
+            }
 //            System.out.println("country 1 data: " + country_region_1[i]);
         }
 
         // University 2
+        int invalidCount2 = 0;
         for (int i = 0; i < CountryRegion2List.size(); i++) {
             String property = CountryRegion2List.get(i).getProperty(searchName);
             // Integral properties
@@ -90,27 +98,36 @@ public class T22Analysis {
             else if (searchName.equals("score")) {
                 property = property.replace(",", "");
             }
-            country_region_2[i] = Double.parseDouble(property);
+            if (property.isEmpty()) {
+                country_region_2[i] = 0.0;
+                invalidCount2 += 1;
+            }
+            else {
+                country_region_2[i] = Double.parseDouble(property);
+            }
 //            System.out.println("country 2 data: " + country_region_2[i]);
         }
 
         Double average1 = 0.0;
         Double average2 = 0.0;
 
-        for (double data : country_region_1) {
-            average1 += data;
+        if (country_region_1.length - invalidCount1 > 0) {
+            for (double data : country_region_1) {
+                average1 += data;
+            }
+            average1 /= (country_region_1.length - invalidCount1);
         }
-        average1 /= country_region_1.length;
 
-        for (double data : country_region_2) {
-            average2 += data;
+        if (country_region_2.length - invalidCount2 > 0) {
+            for (double data : country_region_2) {
+                average2 += data;
+            }
+            average2 /= (country_region_2.length - invalidCount2);
         }
-        average2 /= country_region_2.length;
 
         barData.getData().add(new XYChart.Data<>(average1, CountryRegion1Name));
         barData.getData().add(new XYChart.Data<>(average2, CountryRegion2Name));
 //        System.out.println("average 1: " + average1 + " average 2: " + average2);
-
         return barData;
     }
 
@@ -144,7 +161,13 @@ public class T22Analysis {
         for (int i = 0; i < CountryRegion1List.size()-1; i++) {
             QSItem qsItem = CountryRegion1List.get(i+1);
             String year = qsItem.getProperty("year");
-            score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            String property = qsItem.getProperty(searchName);
+            if (!(property == null || property.isEmpty())) {
+                score = Double.parseDouble(property.replace(",", "."));
+            }
+            else {
+                score = 0.0;
+            }
             System.out.println("Score: " + score);
             if (year.equals(initialYear)) {
                 sum += score;
@@ -173,7 +196,13 @@ public class T22Analysis {
         for (int i = 0; i < CountryRegion2List.size()-1; i++) {
             QSItem qsItem = CountryRegion2List.get(i+1);
             String year = qsItem.getProperty("year");
-            score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            String property = qsItem.getProperty(searchName);
+            if (!(property == null || property.isEmpty())) {
+                score = Double.parseDouble(property.replace(",", "."));
+            }
+            else {
+                score = 0.0;
+            }
             System.out.println("Score: " + score);
             if (year.equals(initialYear)) {
                 sum += score;

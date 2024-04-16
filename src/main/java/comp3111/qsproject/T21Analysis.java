@@ -57,10 +57,13 @@ public class T21Analysis {
          */
         Double[] uni_1 = new Double[University1List.size()];
         Double[] uni_2 = new Double[University2List.size()];
-//        System.out.println("property: " + searchName);
+        System.out.println("property: " + searchName);
+
         // University 1
+        int invalidCount1 = 0; // Stores number of missing data
         for (int i = 0; i < University1List.size(); i++) {
             String property = University1List.get(i).getProperty(searchName);
+            System.out.println(University1Name + " data: " + property);
             // Integral properties
             if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
                 property = property.replace(",", "").replace(".", "");
@@ -69,13 +72,20 @@ public class T21Analysis {
             else if (searchName.equals("score")) {
                 property = property.replace(",", "");
             }
-            uni_1[i] = Double.parseDouble(property);
-//            System.out.println("uni 1 data: " + uni_1[i]);
+            if (property == null || property.isEmpty()) { // Handle Empty Data
+                uni_1[i] = 0.0;
+                invalidCount1 += 1;
+            }
+            else {
+                uni_1[i] = Double.parseDouble(property);
+            }
         }
 
         // University 2
+        int invalidCount2 = 0; // Stores number of missing data
         for (int i = 0; i < University2List.size(); i++) {
             String property = University2List.get(i).getProperty(searchName);
+            System.out.println(University2Name + " data: " + property);
             // Integral properties
             if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
                 property = property.replace(",", "").replace(".", "");
@@ -84,26 +94,36 @@ public class T21Analysis {
             else if (searchName.equals("score")) {
                 property = property.replace(",", "");
             }
-            uni_2[i] = Double.parseDouble(property);
+            if (property == null || property.isEmpty()) { // Handle Empty Data
+                uni_2[i] = 0.0;
+                invalidCount2 += 1;
+            }
+            else {
+                uni_2[i] = Double.parseDouble(property);
+            }
 //            System.out.println("uni 2 data: " + uni_2[i]);
         }
 
         Double average1 = 0.0;
         Double average2 = 0.0;
 
-        for (double data : uni_1) {
-            average1 += data;
+        if (uni_1.length - invalidCount1 > 0) {
+            for (double data : uni_1) {
+                average1 += data;
+            }
+            average1 /= (uni_1.length - invalidCount1);
         }
-        average1 /= uni_1.length;
 
-        for (double data : uni_2) {
-            average2 += data;
+        if (uni_2.length - invalidCount2 > 0) {
+            for (double data : uni_2) {
+                average2 += data;
+            }
+            average2 /= (uni_2.length - invalidCount2);
         }
-        average2 /= uni_2.length;
 
         barData.getData().add(new XYChart.Data<>(average1, University1Name));
         barData.getData().add(new XYChart.Data<>(average2, University2Name));
-//        System.out.println("average 1: " + average1 + " average 2: " + average2);
+        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
 
@@ -128,8 +148,11 @@ public class T21Analysis {
         uniScores1.setName(University1Name);
         for (QSItem qsItem : University1List) {
             String year = qsItem.getProperty("year");
-            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
-            uniScores1.getData().add(new XYChart.Data<>(year, score));
+            String property = qsItem.getProperty(searchName);
+            if (!(property == null || property.isEmpty())) {
+                Double score = Double.parseDouble(property.replace(",", "."));
+                uniScores1.getData().add(new XYChart.Data<>(year, score));
+            }
         }
         lineData.add(uniScores1);
         // University 2
@@ -137,8 +160,11 @@ public class T21Analysis {
         uniScores2.setName(University2Name);
         for (QSItem qsItem : University2List) {
             String year = qsItem.getProperty("year");
-            Double score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
-            uniScores2.getData().add(new XYChart.Data<>(year, score));
+            String property = qsItem.getProperty(searchName);
+            if (!(property == null || property.isEmpty())) {
+                Double score = Double.parseDouble(property.replace(",", "."));
+                uniScores2.getData().add(new XYChart.Data<>(year, score));
+            }
         }
         lineData.add(uniScores2);
 
