@@ -32,7 +32,8 @@ public class T1Analysis {
         ObservableList<String> keyList = FXCollections.observableArrayList();
         switch (searchName) {
             case "country" -> {
-                keyList = QSList.country;
+                keyList =  QSList.country;
+                // keyList = FXCollections.observableArrayList(QSList.country.subList(40,50));
             }
             case "region" -> {
                 keyList = QSList.region;
@@ -123,7 +124,9 @@ public class T1Analysis {
         }
 
         for(int j = 0; j < valueList.length; j++) {
-            valueList[j] = valueList[j]/countList[j];
+            if (countList[j] != 0) {
+                valueList[j] = valueList[j]/countList[j];
+            }
         }
 
         for (int i = 0; i < keyList.size(); i++) {

@@ -214,6 +214,37 @@ public class Controller {
         t1BarChart.getData().clear();
     }
 
+    private void T1_updatePieChart(T1Analysis analyzer) {
+        String pieSearchName = t1PieChartChoiceBox.getValue();
+        t1PieChartLabel.setText(pieSearchName.concat(" & score"));
+        t1PieChart.getData().clear();
+        ObservableList<PieChart.Data> pieChartData = analyzer.getPieChartData(pieSearchName);
+        pieChartData.forEach(datum ->
+                datum.nameProperty().bind(Bindings.concat(datum.getName(), " ",
+                        datum.pieValueProperty().getValue().intValue()))
+        );
+        for (PieChart.Data datum : pieChartData) {
+            t1PieChart.getData().add(datum);
+        }
+    }
+
+    private void T1_updateBarChart(T1Analysis analyzer) {
+        String barSearchName = t1BarChartChoiceBox.getValue();
+        t1BarChartLabel.setText(barSearchName.concat(" & score"));
+        t1BarChart.getData().clear();
+        t1BarChart.getData().add(analyzer.getBarChartData(barSearchName));
+        if (barSearchName.equals("country")) {
+            t1BarChart.setCategoryGap(0);
+            t1BarChart.setBarGap(2);
+            t1BarChartTypeXaxis.tickLabelFontProperty().set(Font.font(6));
+        }
+        else {
+            t1BarChart.setCategoryGap(5);
+            t1BarChart.setBarGap(5);
+            t1BarChartTypeXaxis.tickLabelFontProperty().set(Font.font(12));
+        }
+    }
+
     @FXML
     private void T1_onClickSearch() {
         /*
@@ -239,25 +270,15 @@ public class Controller {
         t1City.setCellValueFactory(new PropertyValueFactory<QSItem, String>("city"));
         t1Type.setCellValueFactory(new PropertyValueFactory<QSItem, String>("type"));
 
-        String pieSearchName = t1PieChartChoiceBox.getValue();
-        t1PieChartLabel.setText(pieSearchName.concat(" & score"));
-        t1PieChart.getData().clear();
-        ObservableList<PieChart.Data> pieChartData = analyzer.getPieChartData(pieSearchName);
-        pieChartData.forEach(datum ->
-                datum.nameProperty().bind(Bindings.concat(datum.getName(), " ",
-                                            datum.pieValueProperty().getValue().intValue()))
-        );
-        for (PieChart.Data datum : pieChartData) {
-            t1PieChart.getData().add(datum);
-        }
+        T1_updatePieChart(analyzer);
+        t1PieChartChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            T1_updatePieChart(analyzer);
+        });
 
-        String barSearchName = t1BarChartChoiceBox.getValue();
-        t1BarChartLabel.setText(pieSearchName.concat(" & score"));
-        t1BarChart.getData().clear();
-        t1BarChart.getData().add(analyzer.getBarChartData(barSearchName));
-        t1BarChartTypeXaxis.tickLabelFontProperty().set(Font.font(12));
-
-        // TODO: Need Listeners for pieChartChoiceBox and BarChartChoiceBox
+        T1_updateBarChart(analyzer);
+        t1BarChartChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            T1_updateBarChart(analyzer);
+        });
     }
 
     @FXML
