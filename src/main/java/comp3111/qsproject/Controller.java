@@ -202,6 +202,16 @@ public class Controller {
             Your Code Here.
             Reset the Page Task1. (including the choice box, labels and charts)
          */
+
+        t1YearChoiceBox.setValue("2017");
+        t1PieChartChoiceBox.setValue("size");
+        t1BarChartChoiceBox.setValue("type");
+
+        t1PieChartLabel.setText("");
+        t1BarChartLabel.setText("");
+
+        t1PieChart.getData().clear();
+        t1BarChart.getData().clear();
     }
 
     @FXML
@@ -217,6 +227,37 @@ public class Controller {
                 6. Update the Bar Chart, which shows the average score of selected property (t1BarChartChoiceBox).
             Please notice that we need listeners for monitoring the changes of choice box in pie chart and bar chart.
          */
+
+        String year = t1YearChoiceBox.getValue();
+        T1Analysis analyzer = new T1Analysis(year);
+
+        t1DataTable.setItems(analyzer.tableList);
+        t1Rank.setCellValueFactory(new PropertyValueFactory<QSItem, String>("rank"));
+        t1University.setCellValueFactory(new PropertyValueFactory<QSItem, String>("name"));
+        t1Score.setCellValueFactory(new PropertyValueFactory<QSItem, String>("score"));
+        t1Country.setCellValueFactory(new PropertyValueFactory<QSItem, String>("country"));
+        t1City.setCellValueFactory(new PropertyValueFactory<QSItem, String>("city"));
+        t1Type.setCellValueFactory(new PropertyValueFactory<QSItem, String>("type"));
+
+        String pieSearchName = t1PieChartChoiceBox.getValue();
+        t1PieChartLabel.setText(pieSearchName.concat(" & score"));
+        t1PieChart.getData().clear();
+        ObservableList<PieChart.Data> pieChartData = analyzer.getPieChartData(pieSearchName);
+        pieChartData.forEach(datum ->
+                datum.nameProperty().bind(Bindings.concat(datum.getName(), " ",
+                                            datum.pieValueProperty().getValue().intValue()))
+        );
+        for (PieChart.Data datum : pieChartData) {
+            t1PieChart.getData().add(datum);
+        }
+
+        String barSearchName = t1BarChartChoiceBox.getValue();
+        t1BarChartLabel.setText(pieSearchName.concat(" & score"));
+        t1BarChart.getData().clear();
+        t1BarChart.getData().add(analyzer.getBarChartData(barSearchName));
+        t1BarChartTypeXaxis.tickLabelFontProperty().set(Font.font(12));
+
+        // TODO: Need Listeners for pieChartChoiceBox and BarChartChoiceBox
     }
 
     @FXML
