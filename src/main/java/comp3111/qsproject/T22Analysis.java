@@ -134,20 +134,23 @@ public class T22Analysis {
         String initialYear = initialItem.getProperty("year");
         Double score = Double.parseDouble(initialItem.getProperty(searchName).replace(",", "."));
         sum += score;
+        System.out.println("Score: " + score);
         for (int i = 0; i < CountryRegion1List.size()-1; i++) {
             QSItem qsItem = CountryRegion1List.get(i+1);
             String year = qsItem.getProperty("year");
             score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            System.out.println("Score: " + score);
             if (year.equals(initialYear)) {
                 sum += score;
             }
             else {
                 countryRegionScores1.getData().add(new XYChart.Data<>(initialYear, sum)); // Store the sums of data from previous years
+                System.out.println(CountryRegion1Name + " Year: " + initialYear + " Sum: " + sum);
                 sum = score; // Update the score to be the current score
                 initialYear = year; // Update the initial year
             }
-//            System.out.println("country 1: " + "year: " + year);
         }
+        System.out.println(CountryRegion1Name + "Year: " + initialYear + "Sum: " + sum);
         countryRegionScores1.getData().add(new XYChart.Data<>(initialYear, sum)); // Handle the last year (there will be no more years after)
         lineData.add(countryRegionScores1);
 
@@ -160,21 +163,23 @@ public class T22Analysis {
         initialYear = initialItem.getProperty("year");
         score = Double.parseDouble(initialItem.getProperty(searchName).replace(",", "."));
         sum += score;
-//        Double[] sums2 = new Double[6]; // Array to store the sums for each year
+        System.out.println("Score: " + score);
         for (int i = 0; i < CountryRegion2List.size()-1; i++) {
             QSItem qsItem = CountryRegion2List.get(i+1);
             String year = qsItem.getProperty("year");
             score = Double.parseDouble(qsItem.getProperty(searchName).replace(",", "."));
+            System.out.println("Score: " + score);
             if (year.equals(initialYear)) {
                 sum += score;
             }
             else {
                 countryRegionScores2.getData().add(new XYChart.Data<>(initialYear, sum)); // Store the sums of data from previous years
+                System.out.println(CountryRegion2Name + " Year: " + initialYear + " Sum: " + sum);
                 sum = score; // Update the score to be the current score
                 initialYear = year; // Update the initial year
             }
-//            System.out.println("country 2: " + "year: " + year);
         }
+        System.out.println(CountryRegion2Name + "Year: " + initialYear + " Sum: " + sum);
         countryRegionScores2.getData().add(new XYChart.Data<>(initialYear, sum)); // Handle the last year (there will be no more years after)
         lineData.add(countryRegionScores2);
 

@@ -34,10 +34,6 @@ public class T21Analysis {
             }
         }
 
-        if (University1List.isEmpty() || University2List.isEmpty()) {
-            // HANDLE MISSING DATA HERE
-        }
-
         University1List.sort(Comparator.comparing(item -> item.getProperty("year")));
         University2List.sort(Comparator.comparing(item -> item.getProperty("year")));
     }

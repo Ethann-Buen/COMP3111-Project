@@ -293,13 +293,23 @@ public class Controller {
 
         T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
 
-        for (int i = 0; i < properties.length; i++) {
-            charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+        // Handle Empty List Error
+        if (analyzer.University1List.isEmpty() || analyzer.University2List.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Years - Universities");
+            alert.setHeaderText(null);
+            alert.setContentText("At least one university selected has no data for the selected year/s!");
+            alert.showAndWait();
         }
+        else {
+            for (int i = 0; i < properties.length; i++) {
+                charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+            }
 
-        List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
-        for (XYChart.Series<String, Double> line : lineData) {
-            t21LineChart.getData().add(line);
+            List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+            for (XYChart.Series<String, Double> line : lineData) {
+                t21LineChart.getData().add(line);
+            }
         }
     }
 
@@ -379,13 +389,22 @@ public class Controller {
 
         T22Analysis analyzer = new T22Analysis(country_region_1, country_region_2, years);
 
-        for (int i = 0; i < properties.length; i++) {
-            charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+        if (analyzer.CountryRegion1List.isEmpty() || analyzer.CountryRegion2List.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Years - Countries");
+            alert.setHeaderText(null);
+            alert.setContentText("At least one country/region selected has no data for the selected year/s!");
+            alert.showAndWait();
         }
+        else {
+            for (int i = 0; i < properties.length; i++) {
+                charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+            }
 
-        List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
-        for (XYChart.Series<String, Double> line : lineData) {
-            t22LineChart.getData().add(line);
+            List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+            for (XYChart.Series<String, Double> line : lineData) {
+                t22LineChart.getData().add(line);
+            }
         }
     }
 
