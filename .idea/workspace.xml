@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="NeedToTest: updated T3Analysis() &amp; update function in RecommendItem">
+    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3Analysis(): clear all element in the RecommendList before start">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/QSList.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/QSList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,12 +27,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "sq0519"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sq0519&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -38,9 +44,16 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2f96t0RG7hHhAxFZtW0C1MrpKiY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -48,8 +61,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Application.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "featureTask3",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/aowu/javafx-sdk-22/lib",
@@ -105,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713206443845</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="T3Analysis(): clear all element in the RecommendList before start">
+      <option name="closed" value="true" />
+      <created>1713207567484</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713207567484</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +156,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="NeedToTest: updated T3Analysis() &amp; update function in RecommendItem" />
-    <option name="LAST_COMMIT_MESSAGE" value="NeedToTest: updated T3Analysis() &amp; update function in RecommendItem" />
+    <MESSAGE value="T3Analysis(): clear all element in the RecommendList before start" />
+    <option name="LAST_COMMIT_MESSAGE" value="T3Analysis(): clear all element in the RecommendList before start" />
   </component>
 </project>

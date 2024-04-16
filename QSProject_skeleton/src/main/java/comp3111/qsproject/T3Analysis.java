@@ -18,22 +18,29 @@ public class T3Analysis {
             Sort the RecommendList by bestRank.
             Hint: QSList.list is a static property, and you can use "update" function in RecommendItem.
          */
-        RecommendList.clear();
         boolean updated = false;
+
         for (QSItem item: QSList.list) {
-            if(item.getRank().compareTo(top_input) < 0 && item.getRank().compareTo(bottom_input) > 0){
+//            System.out.print(item.getRank().compareTo(top_input));
+//            System.out.print(" ");
+//            System.out.println(item.getRank().compareTo(bottom_input));
+
+            if (item.getRank().compareTo(top_input) >= 0 && item.getRank().compareTo(bottom_input) <= 0) {
                 String uni_type = item.getType();
                 String uni_region = item.getRegion();
-                if(uni_type.equals(type) && uni_region.equals((region))){
-                //update best rank if this uni is already a RecommendItem
-                    for(RecommendItem recommendItem: RecommendList){
-                        if(recommendItem.getName().equals(item.getName())&&!updated) {
+//                System.out.println("searching");
+                if (uni_type.equals(type) && uni_region.equals((region))) {
+                    //update best rank if this uni is already a RecommendItem
+                    for (RecommendItem recommendItem : RecommendList) {
+                        if (recommendItem.getName().equals(item.getName()) && !updated) {
+//                          System.out.println("updating");
                             recommendItem.update(item);
                             updated = true;
                         }
                     }
-                //create new item if the uni first appear
-                    if(!updated){
+                    //create new item if the uni first appear
+                    if (!updated) {
+//                        System.out.println("adding");
                         RecommendItem recommendItem = new RecommendItem(item);
                         RecommendList.add(recommendItem);
                     }
@@ -46,6 +53,10 @@ public class T3Analysis {
 
     ObservableList<RecommendItem> getRecommendData() {
         // Show the most valuable university
+        for (RecommendItem item : RecommendList) {
+            System.out.println("Name: " + item.getName());
+            System.out.println("------------------------");
+        }
         return RecommendList;
     }
 }

@@ -182,6 +182,11 @@ public class Controller {
             3. For choice boxes of region,
                 you need to add a blank or "All" option representing selection of all the region.
          */
+        t3TypeChoiceBox.setItems(QSList.type);
+        t3RegionChoiceBox.setItems(QSList.region);
+        t3RegionChoiceBox.getItems().add(" ");
+        t3RegionChoiceBox.getItems().add("ALL");
+
     }
 
     @FXML
@@ -257,6 +262,12 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
+        t3TableView.getItems().clear();
+        t3RegionChoiceBox.setValue(" ");
+        t3TypeChoiceBox.setValue(" ");
+        t3TopRankTextField.clear();
+        t3BottomRankTextField.clear();
+
     }
 
     @FXML
@@ -270,6 +281,20 @@ public class Controller {
                 4. Make an Analyser.
                 5. Update the Table View.
          */
+        String topBoundary = t3TopRankTextField.getText();
+        String bottomBoundary = t3BottomRankTextField.getText();
+        String typeRequired = t3TypeChoiceBox.getValue();
+        String regionRequired = t3RegionChoiceBox.getValue();
+        t3TableView.getItems().clear();
+        T3Analysis t3Analyser = new T3Analysis(topBoundary,bottomBoundary,typeRequired,regionRequired);
+//        t3RegionChoiceBox.setValue("input");
+        t3TableView.setItems(t3Analyser.getRecommendData());
+        t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
+        t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));
+        t3BestRank.setCellValueFactory(new PropertyValueFactory<>("bestRank"));
+        t3RecentYear.setCellValueFactory(new PropertyValueFactory<>("recentYear"));
+        t3RecentRank.setCellValueFactory(new PropertyValueFactory<>("recentRank"));
+
     }
 
 }
