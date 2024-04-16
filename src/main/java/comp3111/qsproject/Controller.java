@@ -256,14 +256,6 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
-        t21RankBarChart.getData().clear();
-        t21ScoreBarChart.getData().clear();
-        t21FacultyBarChart.getData().clear();
-        t21InternationalBarChart.getData().clear();
-        t21SFRBarChart.getData().clear();
-
-        t21LineChart.getData().clear();
-
         String uni_1 = t2University1ChoiceBox.getValue();
         String uni_2 = t2University2ChoiceBox.getValue();
         List<String> years = new ArrayList<>();
@@ -291,24 +283,40 @@ public class Controller {
                 t21InternationalBarChart,
                 t21SFRBarChart};
 
-        T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
-
-        // Handle Empty List Error
-        if (analyzer.University1List.isEmpty() || analyzer.University2List.isEmpty()) {
+        if (uni_1 == null || uni_2 == null || years.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Years - Universities");
+            alert.setTitle("No University or Year Selected");
             alert.setHeaderText(null);
-            alert.setContentText("At least one university selected has no data for the selected year/s!");
+            alert.setContentText("Please ensure that BOTH universities have been chosen and at least one year is selected.");
             alert.showAndWait();
         }
         else {
-            for (int i = 0; i < properties.length; i++) {
-                charts[i].getData().add(analyzer.getBarChartData(properties[i]));
-            }
+            T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
 
-            List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
-            for (XYChart.Series<String, Double> line : lineData) {
-                t21LineChart.getData().add(line);
+            // Handle Empty List Error
+            if (analyzer.University1List.isEmpty() || analyzer.University2List.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Years - Universities");
+                alert.setHeaderText(null);
+                alert.setContentText("At least one university selected has no data for the selected year/s!");
+                alert.showAndWait();
+            }
+            else {
+                t21RankBarChart.getData().clear();
+                t21ScoreBarChart.getData().clear();
+                t21FacultyBarChart.getData().clear();
+                t21InternationalBarChart.getData().clear();
+                t21SFRBarChart.getData().clear();
+                t21LineChart.getData().clear();
+
+                for (int i = 0; i < properties.length; i++) {
+                    charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+                }
+
+                List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+                for (XYChart.Series<String, Double> line : lineData) {
+                    t21LineChart.getData().add(line);
+                }
             }
         }
     }
@@ -350,14 +358,6 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
-        t22RankBarChart.getData().clear();
-        t22ScoreBarChart.getData().clear();
-        t22FacultyBarChart.getData().clear();
-        t22InternationalBarChart.getData().clear();
-        t22SFRBarChart.getData().clear();
-
-        t22LineChart.getData().clear();
-
         String country_region_1 = t2CountryRegion1ChoiceBox.getValue();
         String country_region_2 = t2CountryRegion2ChoiceBox.getValue();
 
@@ -387,23 +387,39 @@ public class Controller {
                 t22InternationalBarChart,
                 t22SFRBarChart};
 
-        T22Analysis analyzer = new T22Analysis(country_region_1, country_region_2, years);
-
-        if (analyzer.CountryRegion1List.isEmpty() || analyzer.CountryRegion2List.isEmpty()) {
+        if (country_region_1 == null || country_region_2 == null || country_region_1.equals("--") || country_region_2.equals("--") || years.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Years - Countries");
+            alert.setTitle("No Country/Region or Year Selected");
             alert.setHeaderText(null);
-            alert.setContentText("At least one country/region selected has no data for the selected year/s!");
+            alert.setContentText("Please ensure that BOTH countries/regions have been chosen and at least one year is selected.");
             alert.showAndWait();
         }
         else {
-            for (int i = 0; i < properties.length; i++) {
-                charts[i].getData().add(analyzer.getBarChartData(properties[i]));
-            }
+            T22Analysis analyzer = new T22Analysis(country_region_1, country_region_2, years);
 
-            List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
-            for (XYChart.Series<String, Double> line : lineData) {
-                t22LineChart.getData().add(line);
+            if (analyzer.CountryRegion1List.isEmpty() || analyzer.CountryRegion2List.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Years - Countries");
+                alert.setHeaderText(null);
+                alert.setContentText("At least one country/region selected has no data for the selected year/s!");
+                alert.showAndWait();
+            }
+            else {
+                t22RankBarChart.getData().clear();
+                t22ScoreBarChart.getData().clear();
+                t22FacultyBarChart.getData().clear();
+                t22InternationalBarChart.getData().clear();
+                t22SFRBarChart.getData().clear();
+                t22LineChart.getData().clear();
+
+                for (int i = 0; i < properties.length; i++) {
+                    charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+                }
+
+                List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+                for (XYChart.Series<String, Double> line : lineData) {
+                    t22LineChart.getData().add(line);
+                }
             }
         }
     }

@@ -32,6 +32,12 @@ public class T22Analysis {
                 if (country.equals(country_region_2) || region.equals(country_region_2)) {
                     CountryRegion2List.add(item);
                 }
+                if (country_region_1.equals("All")) {
+                    CountryRegion1List.add(item);
+                }
+                if (country_region_2.equals("All")) {
+                    CountryRegion2List.add(item);
+                }
             }
         }
         CountryRegion1List.sort(Comparator.comparing(item -> item.getProperty("year")));
