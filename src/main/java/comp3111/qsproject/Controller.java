@@ -256,6 +256,14 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        t21RankBarChart.getData().clear();
+        t21ScoreBarChart.getData().clear();
+        t21FacultyBarChart.getData().clear();
+        t21InternationalBarChart.getData().clear();
+        t21SFRBarChart.getData().clear();
+
+        t21LineChart.getData().clear();
+
         String uni_1 = t2University1ChoiceBox.getValue();
         String uni_2 = t2University2ChoiceBox.getValue();
         List<String> years = new ArrayList<>();
@@ -332,6 +340,14 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        t22RankBarChart.getData().clear();
+        t22ScoreBarChart.getData().clear();
+        t22FacultyBarChart.getData().clear();
+        t22InternationalBarChart.getData().clear();
+        t22SFRBarChart.getData().clear();
+
+        t22LineChart.getData().clear();
+
         String country_region_1 = t2CountryRegion1ChoiceBox.getValue();
         String country_region_2 = t2CountryRegion2ChoiceBox.getValue();
 
