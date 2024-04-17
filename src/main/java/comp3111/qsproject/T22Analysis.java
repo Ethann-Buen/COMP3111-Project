@@ -125,8 +125,9 @@ public class T22Analysis {
             average2 /= (country_region_2.length - invalidCount2);
         }
 
-        barData.getData().add(new XYChart.Data<>(average1, CountryRegion1Name));
-        barData.getData().add(new XYChart.Data<>(average2, CountryRegion2Name));
+        barData.getData().add(new XYChart.Data<>(average2, "Country/Region 2"));
+        barData.getData().add(new XYChart.Data<>(average1, "Country/Region 1"));
+
 //        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }

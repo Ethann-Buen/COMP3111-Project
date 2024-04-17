@@ -121,8 +121,9 @@ public class T21Analysis {
             average2 /= (uni_2.length - invalidCount2);
         }
 
-        barData.getData().add(new XYChart.Data<>(average1, University1Name));
-        barData.getData().add(new XYChart.Data<>(average2, University2Name));
+        barData.getData().add(new XYChart.Data<>(average2, "University 2"));
+        barData.getData().add(new XYChart.Data<>(average1, "University 1"));
+
         System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
