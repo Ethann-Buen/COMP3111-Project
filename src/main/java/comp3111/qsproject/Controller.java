@@ -317,6 +317,9 @@ public class Controller {
                 for (XYChart.Series<String, Double> line : lineData) {
                     t21LineChart.getData().add(line);
                 }
+                CategoryAxis xAxis = (CategoryAxis) t21LineChart.getXAxis();
+                xAxis.setAutoRanging(true);
+                xAxis.setCategories(yearList);
             }
         }
     }
@@ -420,6 +423,9 @@ public class Controller {
                 for (XYChart.Series<String, Double> line : lineData) {
                     t22LineChart.getData().add(line);
                 }
+                CategoryAxis xAxis = (CategoryAxis) t22LineChart.getXAxis();
+                xAxis.setAutoRanging(true);
+                xAxis.setCategories(yearList);
             }
         }
     }

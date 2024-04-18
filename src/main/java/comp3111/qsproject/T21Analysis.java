@@ -146,9 +146,11 @@ public class T21Analysis {
          */
         // University 1
         XYChart.Series<String, Double> uniScores1 = new XYChart.Series<>();
+        System.out.println(University1Name);
         uniScores1.setName(University1Name);
         for (QSItem qsItem : University1List) {
             String year = qsItem.getProperty("year");
+            System.out.println(year);
             String property = qsItem.getProperty(searchName);
             if (!(property == null || property.isEmpty())) {
                 Double score = Double.parseDouble(property.replace(",", "."));
@@ -158,9 +160,11 @@ public class T21Analysis {
         lineData.add(uniScores1);
         // University 2
         XYChart.Series<String, Double> uniScores2 = new XYChart.Series<>();
+        System.out.println(University2Name);
         uniScores2.setName(University2Name);
         for (QSItem qsItem : University2List) {
             String year = qsItem.getProperty("year");
+            System.out.println(year);
             String property = qsItem.getProperty(searchName);
             if (!(property == null || property.isEmpty())) {
                 Double score = Double.parseDouble(property.replace(",", "."));
