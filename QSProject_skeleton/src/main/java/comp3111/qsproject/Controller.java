@@ -289,7 +289,7 @@ public class Controller {
         String typeRequired = t3TypeChoiceBox.getValue();
         String regionRequired = t3RegionChoiceBox.getValue();
         t3TableView.getItems().clear();
-        if(typeRequired.isEmpty() || regionRequired.isEmpty()){
+        if(typeRequired.isEmpty() || regionRequired.isEmpty() || topBoundary.compareTo("1") < 0 || bottomBoundary.compareTo("240") > 0 ){
 //            t3WarningLabel.setText("Please fill in the box");
             T3_onClickClear();
         }
