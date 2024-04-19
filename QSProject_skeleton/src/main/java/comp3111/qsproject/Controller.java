@@ -150,6 +150,8 @@ public class Controller {
     @FXML
     public TableColumn<RecommendItem, String> t3RecentRank;
 
+//    public Label t3WarningLabel;
+
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
 
@@ -184,8 +186,9 @@ public class Controller {
          */
         t3TypeChoiceBox.setItems(QSList.type);
         t3RegionChoiceBox.setItems(QSList.region);
-        t3RegionChoiceBox.getItems().add(" ");
+        t3TypeChoiceBox.getItems().add("ALL");
         t3RegionChoiceBox.getItems().add("ALL");
+        T3_onClickClear();
 
     }
 
@@ -263,8 +266,8 @@ public class Controller {
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
         t3TableView.getItems().clear();
-        t3RegionChoiceBox.setValue(" ");
-        t3TypeChoiceBox.setValue(" ");
+        t3RegionChoiceBox.setValue("");
+        t3TypeChoiceBox.setValue("");
         t3TopRankTextField.clear();
         t3BottomRankTextField.clear();
 
@@ -286,14 +289,20 @@ public class Controller {
         String typeRequired = t3TypeChoiceBox.getValue();
         String regionRequired = t3RegionChoiceBox.getValue();
         t3TableView.getItems().clear();
-        T3Analysis t3Analyser = new T3Analysis(topBoundary,bottomBoundary,typeRequired,regionRequired);
+        if(typeRequired.isEmpty() || regionRequired.isEmpty()){
+//            t3WarningLabel.setText("Please fill in the box");
+            T3_onClickClear();
+        }
+        else{
+            T3Analysis t3Analyser = new T3Analysis(topBoundary,bottomBoundary,typeRequired,regionRequired);
 //        t3RegionChoiceBox.setValue("input");
-        t3TableView.setItems(t3Analyser.getRecommendData());
-        t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
-        t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));
-        t3BestRank.setCellValueFactory(new PropertyValueFactory<>("bestRank"));
-        t3RecentYear.setCellValueFactory(new PropertyValueFactory<>("recentYear"));
-        t3RecentRank.setCellValueFactory(new PropertyValueFactory<>("recentRank"));
+            t3TableView.setItems(t3Analyser.getRecommendData());
+            t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
+            t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));
+            t3BestRank.setCellValueFactory(new PropertyValueFactory<>("bestRank"));
+            t3RecentYear.setCellValueFactory(new PropertyValueFactory<>("recentYear"));
+            t3RecentRank.setCellValueFactory(new PropertyValueFactory<>("recentRank"));
+        }
 
     }
 

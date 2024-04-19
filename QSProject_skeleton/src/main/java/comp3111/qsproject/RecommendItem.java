@@ -19,6 +19,15 @@ public class RecommendItem {
         recentRank = item.rank;
     }
 
+    //For JUnit Test Case
+//    RecommendItem(String testName, String best_year, String best_rank, String recent_year, String recent_rank) {
+//        name = testName;
+//        bestYear = best_year;
+//        bestRank = best_rank;
+//        recentYear = recent_year;
+//        recentRank = recent_rank;
+//    }
+
     void update(QSItem item) {
         assert (item.name.equals(name));
         /*

@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3Analysis(): clear all element in the RecommendList before start">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3Analysis &amp; controller: Runnable, but need to test more cases and may have some runtime bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/QSList.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/QSList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/RecommendItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/RecommendItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +15,17 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="featureTask3" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,6 +54,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -59,20 +65,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Application.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "featureTask3",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/aowu/javafx-sdk-22/lib",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RecommendItemTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.T3AnalysisTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;featureTask3&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aowu/javafx-sdk-22/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="comp3111.qsproject" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="COMP3111-Project" />
@@ -128,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713207567484</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="T3Analysis &amp; controller: Runnable, but need to test more cases and may have some runtime bugs">
+      <option name="closed" value="true" />
+      <created>1713256957507</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713256957507</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +183,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="NeedToTest: updated T3Analysis() &amp; update function in RecommendItem" />
     <MESSAGE value="T3Analysis(): clear all element in the RecommendList before start" />
-    <option name="LAST_COMMIT_MESSAGE" value="T3Analysis(): clear all element in the RecommendList before start" />
+    <MESSAGE value="T3Analysis &amp; controller: Runnable, but need to test more cases and may have some runtime bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="T3Analysis &amp; controller: Runnable, but need to test more cases and may have some runtime bugs" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP3111_Project$T3AnalysisTest.ic" NAME="T3AnalysisTest Coverage Results" MODIFIED="1713354126554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>comp3111.qsproject.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/COMP3111_Project$RecommendItemTest.ic" NAME="RecommendItemTest Coverage Results" MODIFIED="1713354159352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>comp3111.qsproject.*</FILTER>
+    </SUITE>
   </component>
 </project>
