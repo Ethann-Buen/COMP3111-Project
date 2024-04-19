@@ -12,6 +12,13 @@ public class T21Analysis {
     private String University1Name;
     private String University2Name;
 
+    /**
+     * Constructor for Task 2.1 Analyzer. It extracts university data from QSList.list for further processing.
+     * @param uni_1 The first university choice
+     * @param uni_2 The second university choice
+     * @param years The list of years to consider
+     * @author Ethann-Buen
+     */
     T21Analysis(String uni_1, String uni_2, List<String> years) {
         /*
             Your Code Here.
@@ -38,6 +45,12 @@ public class T21Analysis {
         University2List.sort(Comparator.comparing(item -> item.getProperty("year")));
     }
 
+    /**
+     * Calculates the averages of the universities' data based on the given property, and returns the data
+     * in the form of a bar chart. It cleans the dirty data before further processing.
+     * @param searchName The property to be compared.
+     * @author Ethann-Buen
+     */
     XYChart.Series<Double, String> getBarChartData(String searchName) {
         XYChart.Series<Double, String> barData= new XYChart.Series<>();
         /*
@@ -128,6 +141,12 @@ public class T21Analysis {
         return barData;
     }
 
+    /**
+     * Calculates the averages of universities' scores per year, and plots the computed output in the form
+     * of a line chart. It cleans the dirty data before further processing.
+     * @param searchName The property to be compared (score by default)
+     * @author Ethann-Buen
+     */
     List<XYChart.Series<String, Double>> getLineChartData(String searchName) {
         List<XYChart.Series<String, Double>> lineData = new ArrayList<>();
         /*

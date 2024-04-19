@@ -12,6 +12,13 @@ public class T22Analysis {
     private String CountryRegion1Name;
     private String CountryRegion2Name;
 
+    /**
+     * Constructor for Task 2.2 Analyzer. It extracts country/region data from QSList.list for further processing.
+     * @param country_region_1 The first country/region choice
+     * @param country_region_2 The second country/region choice
+     * @param years The list of years to consider
+     * @author Ethann-Buen
+     */
     T22Analysis(String country_region_1, String country_region_2, List<String> years) {
         /*
             Your Code Here.
@@ -44,6 +51,12 @@ public class T22Analysis {
         CountryRegion2List.sort(Comparator.comparing(item -> item.getProperty("year")));
     }
 
+    /**
+     * Calculates the averages of the country/region data based on the given property, and returns the data
+     * in the form of a bar chart. It cleans the dirty data before further processing.
+     * @param searchName The property to be compared.
+     * @author Ethann-Buen
+     */
     XYChart.Series<Double, String> getBarChartData(String searchName) {
         XYChart.Series<Double, String> barData= new XYChart.Series<>();
         /*
@@ -132,6 +145,12 @@ public class T22Analysis {
         return barData;
     }
 
+    /**
+     * Calculates the averages of country/region scores per year, and plots the computed output in the form
+     * of a line chart. It cleans the dirty data before further processing.
+     * @param searchName The property to be compared (score by default)
+     * @author Ethann-Buen
+     */
     List<XYChart.Series<String, Double>> getLineChartData(String searchName) {
         List<XYChart.Series<String, Double>> lineData = new ArrayList<>();
         /*

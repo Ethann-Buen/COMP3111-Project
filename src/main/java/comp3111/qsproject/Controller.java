@@ -153,6 +153,12 @@ public class Controller {
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
 
+    /**
+     * Initializes the UI elements (e.g., checkboxes and choice boxes)
+     * @author Ethann-Buen
+     * @author phmakaa
+     * @author sq0519
+     */
     @FXML
     private void initialize() {
         // Whole Program Information
@@ -219,6 +225,10 @@ public class Controller {
          */
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author Ethann-Buen
+     */
     @FXML
     private void T21_onClickClear() {
         /*
@@ -244,6 +254,10 @@ public class Controller {
         t21LineChart.getData().clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the comparison results from the Task 2.1 Analyzer.
+     * @author Ethann-Buen
+     */
     @FXML
     private void T21_onClickCompare() {
         /*
@@ -324,6 +338,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author Ethann-Buen
+     */
     @FXML
     private void T22_onClickClear() {
         /*
@@ -349,6 +367,10 @@ public class Controller {
         t22LineChart.getData().clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the comparison results from the Task 2.2 Analyzer.
+     * @author Ethann-Buen
+     */
     @FXML
     private void T22_onClickCompare() {
         /*
