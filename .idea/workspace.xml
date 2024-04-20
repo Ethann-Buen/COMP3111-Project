@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3Analysis &amp; controller: fixed some bugs">
+    <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3_onClickRecommend: Improvement of conditions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/resources/comp3111/qsproject/ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/resources/comp3111/qsproject/ui.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713552223943</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="T3_onClickRecommend: Improvement of conditions">
+      <option name="closed" value="true" />
+      <created>1713552536177</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713552536177</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,7 +201,8 @@
     <MESSAGE value="T3Analysis(): clear all element in the RecommendList before start" />
     <MESSAGE value="T3Analysis &amp; controller: Runnable, but need to test more cases and may have some runtime bugs" />
     <MESSAGE value="T3Analysis &amp; controller: fixed some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="T3Analysis &amp; controller: fixed some bugs" />
+    <MESSAGE value="T3_onClickRecommend: Improvement of conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="T3_onClickRecommend: Improvement of conditions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3111_Project$T3AnalysisTest.ic" NAME="T3AnalysisTest Coverage Results" MODIFIED="1713354126554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
