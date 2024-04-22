@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +27,12 @@ public class T3Analysis {
         boolean updated = false;
         QSList.initialize();
         for (QSItem item: QSList.list) {
-            if ((item.getRank().compareTo(top_input) >= 0 || top_input.isBlank()) && (item.getRank().compareTo(bottom_input) <= 0 || bottom_input.isBlank())) {
-                String uni_type = item.getType();
-                String uni_region = item.getRegion();
+            String uni_type = item.getType();
+            String uni_region = item.getRegion();
+            int uni_rank = Integer.parseInt(item.getRank());
+            int top_rank = Integer.parseInt(top_input);
+            int bottom_rank = Integer.parseInt(bottom_input);
+            if (((uni_rank - top_rank) >= 0 || top_input.isBlank()) && ((uni_rank-bottom_rank) <= 0 || bottom_input.isBlank())) {
                 if ((uni_type.equals(type)||type.equals("ALL")) && (uni_region.equals(region) || region.equals("ALL"))) {
                     //update best rank if this uni is already a RecommendItem
                     for (RecommendItem recommendItem : RecommendList) {
@@ -47,7 +51,15 @@ public class T3Analysis {
             }
         }
 
-        RecommendList.sort(Comparator.comparing(RecommendItem::getBestRank));
+        Collections.sort(RecommendList, new Comparator<RecommendItem>() {
+            @Override
+            public int compare(RecommendItem item1, RecommendItem item2) {
+                int rank1 = Integer.parseInt(item1.getBestRank());
+                int rank2 = Integer.parseInt(item2.getBestRank());
+                return Integer.compare(rank1, rank2);
+            }
+        });
+
     }
 
     ObservableList<RecommendItem> getRecommendData() {

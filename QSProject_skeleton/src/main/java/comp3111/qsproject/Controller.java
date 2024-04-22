@@ -266,7 +266,7 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
-        t3infolabel.setText("Please fill in the region and the type of the universities");
+        t3infolabel.setText("Please enter the ranking range, type and region");
         t3TableView.getItems().clear();
         t3RegionChoiceBox.setValue("");
         t3TypeChoiceBox.setValue("");
@@ -286,16 +286,17 @@ public class Controller {
                 4. Make an Analyser.
                 5. Update the Table View.
          */
-        String topBoundary = t3TopRankTextField.getText();
-        String bottomBoundary = t3BottomRankTextField.getText();
+        int topBoundary = Integer.parseInt(t3TopRankTextField.getText());
+        int bottomBoundary = Integer.parseInt(t3BottomRankTextField.getText());
         String typeRequired = t3TypeChoiceBox.getValue();
         String regionRequired = t3RegionChoiceBox.getValue();
         t3TableView.getItems().clear();
-        if(typeRequired.isEmpty() || regionRequired.isEmpty() || (topBoundary.compareTo("1") < 0 && !topBoundary.isBlank() ) || (bottomBoundary.compareTo("240") > 0 && !bottomBoundary.isBlank())){
-            T3_onClickClear();
-        }
-        else{
-            T3Analysis t3Analyser = new T3Analysis(topBoundary,bottomBoundary,typeRequired,regionRequired);
+        if(typeRequired.isEmpty() || regionRequired.isEmpty()){
+            t3infolabel.setText("Please enter the region and type of university");
+        } else if ((topBoundary - 1 < 0 && !t3TopRankTextField.getText().isBlank() ) || (bottomBoundary - 400 > 0 && !t3TopRankTextField.getText().isBlank())) {
+            t3infolabel.setText("Rankings should range from 1 to 400");
+        } else{
+            T3Analysis t3Analyser = new T3Analysis(t3TopRankTextField.getText(),t3BottomRankTextField.getText(),typeRequired,regionRequired);
             t3infolabel.setText("Based on your input these universities you can prefer for higher education");
             t3TableView.setItems(t3Analyser.getRecommendData());
             t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
