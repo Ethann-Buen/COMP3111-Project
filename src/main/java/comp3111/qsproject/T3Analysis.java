@@ -14,6 +14,8 @@ public class T3Analysis implements Comparator<RecommendItem> {
 
 
     /**
+     * @param item1 Recommended Item in RecommendList
+     * @param item2 Recommended Item RecommendList
      * @return Comparison results of two RecommendItem based on rankings
      * @author sq0519
      */
