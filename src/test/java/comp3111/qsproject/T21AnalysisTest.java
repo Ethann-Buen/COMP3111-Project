@@ -31,7 +31,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -56,7 +56,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -81,7 +81,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -106,7 +106,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -131,7 +131,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -156,7 +156,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -181,7 +181,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -206,7 +206,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -231,7 +231,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -256,7 +256,7 @@ class T21AnalysisTest {
 
         for (int i = 0; i < expected.getData().size(); i++) {
             XYChart.Data<Double, String> expectedData = expected.getData().get(i);
-            XYChart.Data<Double, String> actualData = expected.getData().get(i);
+            XYChart.Data<Double, String> actualData = actual.getData().get(i);
             assertEquals(expectedData.getXValue(), actualData.getXValue(), 0.1);
             assertEquals(expectedData.getYValue(), actualData.getYValue());
         }
@@ -303,7 +303,6 @@ class T21AnalysisTest {
             System.out.println(expectedData.getData());
             System.out.println(actualData.getData());
             for (int j = 0; j < expectedData.getData().size(); j++) {;
-                System.out.println("hi");
                 XYChart.Data<String, Double> expectedPoint = expectedData.getData().get(j);
                 XYChart.Data<String, Double> actualPoint = actualData.getData().get(j);
                 System.out.println("year: " +expectedPoint.getXValue() + " " + actualPoint.getXValue());
