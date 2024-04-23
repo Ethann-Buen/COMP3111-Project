@@ -42,7 +42,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "CentraleSupÃ©lec";
+        String uni_1 = "CentraleSupélec";
         String uni_2 = "Boston University";
         List<String> years = List.of("2020", "2018", "2022");
 
@@ -92,7 +92,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "Technische UniversitÃ¤t Berlin (TU Berlin)";
+        String uni_1 = "Technische Universität Berlin (TU Berlin)";
         String uni_2 = "Pakistan Institute of Engineering and Applied Sciences (PIEAS)";
         List<String> years = List.of("2020", "2019", "2021");
 
@@ -192,7 +192,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "UniversitÃ© Paris Descartes";
+        String uni_1 = "Université Paris Descartes";
         String uni_2 = "Aalborg University";
         List<String> years = List.of("2017", "2019", "2022");
 
@@ -217,7 +217,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "UniversitÃ© Paris Descartes";
+        String uni_1 = "Université Paris Descartes";
         String uni_2 = "Aalborg University";
         List<String> years = List.of("2017", "2019", "2022");
 
@@ -242,7 +242,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "CentraleSupÃ©lec";
+        String uni_1 = "CentraleSupélec";
         String uni_2 = "Boston University";
         List<String> years = List.of("2020", "2018", "2022");
 
@@ -268,7 +268,7 @@ class T21AnalysisTest {
             QSList.initialize();
         }
 
-        String uni_1 = "CentraleSupÃ©lec";
+        String uni_1 = "CentraleSupélec";
         String uni_2 = "University of South Australia";
         List<String> years = List.of("2017", "2018", "2019", "2020", "2021", "2022");
         List<Double> scores1 = List.of(52.3, 52.3, 52.3, 52.3, 52.3, -1.0);
