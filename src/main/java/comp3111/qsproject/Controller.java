@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
@@ -153,6 +154,26 @@ public class Controller {
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
 
+    public static class NumericalStringComparator implements Comparator<String> {
+        @Override
+        public int compare(String str1, String str2) {
+            // Handle potential null values
+            if (str1 == null || str2 == null) {
+                return str1 == null ? (str2 == null ? 0 : -1) : 1;
+            }
+
+            try {
+                // Attempt to parse strings as doubles
+                double num1 = Double.parseDouble(str1);
+                double num2 = Double.parseDouble(str2);
+                return Double.compare(num1, num2);
+            } catch (NumberFormatException ex) {
+                // If parsing fails, revert to lexicographical comparison
+                return str1.compareTo(str2);
+            }
+        }
+    }
+
     /**
      * Initializes the UI elements (e.g., checkboxes and choice boxes)
      * @author Ethann-Buen
@@ -202,6 +223,10 @@ public class Controller {
          */
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author phmakaa
+     */
     @FXML
     private void T1_onClickClear() {
         /*
@@ -220,6 +245,10 @@ public class Controller {
         t1BarChart.getData().clear();
     }
 
+    /**
+     * Updates pie chart using data in analyzer.
+     * @author phmakaa
+     */
     private void T1_updatePieChart(T1Analysis analyzer) {
         String pieSearchName = t1PieChartChoiceBox.getValue();
         t1PieChartLabel.setText(pieSearchName.concat(" & score"));
@@ -234,6 +263,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Updates bar chart using data in analyzer.
+     * @author phmakaa
+     */
     private void T1_updateBarChart(T1Analysis analyzer) {
         String barSearchName = t1BarChartChoiceBox.getValue();
         t1BarChartLabel.setText(barSearchName.concat(" & score"));
@@ -251,6 +284,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the search results from the Task 1 Analyzer.
+     * @author phmakaa
+     */
     @FXML
     private void T1_onClickSearch() {
         /*
@@ -275,6 +312,9 @@ public class Controller {
         t1Country.setCellValueFactory(new PropertyValueFactory<QSItem, String>("country"));
         t1City.setCellValueFactory(new PropertyValueFactory<QSItem, String>("city"));
         t1Type.setCellValueFactory(new PropertyValueFactory<QSItem, String>("type"));
+
+        t1Rank.setComparator(new NumericalStringComparator());
+        t1Score.setComparator(new NumericalStringComparator());
 
         T1_updatePieChart(analyzer);
         t1PieChartChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
