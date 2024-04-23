@@ -62,10 +62,6 @@ public class QSItem {
         return type;
     }
 
-    public String getRegion() { return region; }
-
-    public String getYear() { return year; }
-
     public String getResearchOutput() {
         return researchOutput;
     }

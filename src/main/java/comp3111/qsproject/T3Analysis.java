@@ -27,13 +27,22 @@ public class T3Analysis implements Comparator<RecommendItem> {
          */
         boolean updated = false;
         for (QSItem item: QSList.list) {
-            String uni_type = item.getType();
-            String uni_region = item.getRegion();
+            String uni_type = item.type;
+            String uni_region = item.region;
             int uni_rank = Integer.parseInt(item.getRank());
-            int top_rank = Integer.parseInt(top_input);
-            int bottom_rank = Integer.parseInt(bottom_input);
-            if (((uni_rank - top_rank) >= 0 || top_input.isBlank()) && ((uni_rank-bottom_rank) <= 0 || bottom_input.isBlank())) {
-                if ((uni_type.equals(type)||type.equals("ALL") || uni_type.isBlank()) && (uni_region.equals(region) || region.equals("ALL"))) {
+
+            boolean inRange = false;
+
+            if (top_input.isBlank() ||  uni_rank >= Integer.parseInt(top_input)) {
+                inRange = true;
+            }
+
+            if (bottom_input.isBlank() || uni_rank <= Integer.parseInt(bottom_input)) {
+                inRange = true;
+            }
+
+            if (inRange && (uni_type.equals(type) || type.equals("ALL") || uni_type.isBlank()) &&
+                    (uni_region.equals(region) || region.equals("ALL"))) {
                     //update best rank if this uni is already a RecommendItem
                     for (RecommendItem recommendItem : RecommendList) {
                         if (recommendItem.getName().equals(item.getName()) && !updated) {
@@ -47,7 +56,6 @@ public class T3Analysis implements Comparator<RecommendItem> {
                         RecommendList.add(recommendItem);
                     }
                     updated = false;
-                }
             }
         }
         RecommendList.sort(this);

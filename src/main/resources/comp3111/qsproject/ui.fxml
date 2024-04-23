@@ -512,7 +512,7 @@
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                 <Label fx:id="t3infolabel" layoutX="99.0" layoutY="12.0" text = "&amp;" textAlignment="CENTER" wrapText="true">
+                                                 <Label layoutX="99.0" layoutY="12.0" text = "Based on your input these universities you can prefer for higher education" textAlignment="CENTER" wrapText="true">
                                                    <font>
                                                       <Font size="17.0" />
                                                    </font>
