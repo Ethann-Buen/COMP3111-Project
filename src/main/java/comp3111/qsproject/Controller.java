@@ -150,6 +150,8 @@ public class Controller {
 
     @FXML
     public TableColumn<RecommendItem, String> t3RecentRank;
+    @FXML
+    public Label t3infolabel;
 
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
@@ -173,6 +175,13 @@ public class Controller {
             }
         }
     }
+
+    /**
+     * Initializes the UI elements (e.g., checkboxes and choice boxes)
+     * @author Ethann-Buen
+     * @author phmakaa
+     * @author sq0519
+     */
     @FXML
     private void initialize() {
         // Whole Program Information
@@ -214,8 +223,18 @@ public class Controller {
             3. For choice boxes of region,
                 you need to add a blank or "All" option representing selection of all the region.
          */
+        t3TypeChoiceBox.setItems(QSList.type);
+        t3RegionChoiceBox.setItems(QSList.region);
+        t3TypeChoiceBox.getItems().add("ALL");
+        t3RegionChoiceBox.getItems().add("ALL");
+        t3infolabel.setText("Please fill in the region and the type of the universities");
+        T3_onClickClear();
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author phmakaa
+     */
     @FXML
     private void T1_onClickClear() {
         /*
@@ -234,6 +253,10 @@ public class Controller {
         t1BarChart.getData().clear();
     }
 
+    /**
+     * Updates pie chart using data in analyzer.
+     * @author phmakaa
+     */
     private void T1_updatePieChart(T1Analysis analyzer) {
         String pieSearchName = t1PieChartChoiceBox.getValue();
         t1PieChartLabel.setText(pieSearchName.concat(" & score"));
@@ -248,6 +271,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Updates bar chart using data in analyzer.
+     * @author phmakaa
+     */
     private void T1_updateBarChart(T1Analysis analyzer) {
         String barSearchName = t1BarChartChoiceBox.getValue();
         t1BarChartLabel.setText(barSearchName.concat(" & score"));
@@ -265,6 +292,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the search results from the Task 1 Analyzer.
+     * @author phmakaa
+     */
     @FXML
     private void T1_onClickSearch() {
         /*
@@ -304,14 +335,39 @@ public class Controller {
         });
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author Ethann-Buen
+     */
     @FXML
     private void T21_onClickClear() {
         /*
             Your Code Here.
             Reset the Page Task 2.1. (including the choice boxes, check boxes and charts)
          */
+        t2University1ChoiceBox.getSelectionModel().clearSelection();
+        t2University2ChoiceBox.getSelectionModel().clearSelection();
+
+        t22017CheckBox.setSelected(false);
+        t22018CheckBox.setSelected(false);
+        t22019CheckBox.setSelected(false);
+        t22020CheckBox.setSelected(false);
+        t22021CheckBox.setSelected(false);
+        t22022CheckBox.setSelected(false);
+
+        t21RankBarChart.getData().clear();
+        t21ScoreBarChart.getData().clear();
+        t21FacultyBarChart.getData().clear();
+        t21InternationalBarChart.getData().clear();
+        t21SFRBarChart.getData().clear();
+
+        t21LineChart.getData().clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the comparison results from the Task 2.1 Analyzer.
+     * @author Ethann-Buen
+     */
     @FXML
     private void T21_onClickCompare() {
         /*
@@ -324,16 +380,107 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        String uni_1 = t2University1ChoiceBox.getValue();
+        String uni_2 = t2University2ChoiceBox.getValue();
+        List<String> years = new ArrayList<>();
+        CheckBox[] checkBoxes = {
+                t22017CheckBox,
+                t22018CheckBox,
+                t22019CheckBox,
+                t22020CheckBox,
+                t22021CheckBox,
+                t22022CheckBox};
+
+        for (int i = 0; i < checkBoxes.length; i++) {
+            CheckBox curBox = checkBoxes[i];
+            String curYear = yearList.get(i);
+            if (curBox.isSelected()) {
+                years.add(curYear);
+            }
+        }
+
+        String[] properties = {"rank", "score", "facultyCount", "internationalStudents", "studentFacultyRatio"};
+        BarChart<Double, String>[] charts = new BarChart[]{
+                t21RankBarChart,
+                t21ScoreBarChart,
+                t21FacultyBarChart,
+                t21InternationalBarChart,
+                t21SFRBarChart};
+
+        if (uni_1 == null || uni_2 == null || years.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No University or Year Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please ensure that BOTH universities have been chosen and at least one year is selected.");
+            alert.showAndWait();
+        }
+        else {
+            T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
+
+            // Handle Empty List Error
+            if (analyzer.University1List.isEmpty() || analyzer.University2List.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Years - Universities");
+                alert.setHeaderText(null);
+                alert.setContentText("At least one university selected has no data for the selected year/s!");
+                alert.showAndWait();
+            }
+            else {
+                t21RankBarChart.getData().clear();
+                t21ScoreBarChart.getData().clear();
+                t21FacultyBarChart.getData().clear();
+                t21InternationalBarChart.getData().clear();
+                t21SFRBarChart.getData().clear();
+                t21LineChart.getData().clear();
+
+                for (int i = 0; i < properties.length; i++) {
+                    charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+                }
+
+                List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+                for (XYChart.Series<String, Double> line : lineData) {
+                    t21LineChart.getData().add(line);
+                }
+                CategoryAxis xAxis = (CategoryAxis) t21LineChart.getXAxis();
+                xAxis.setAutoRanging(true);
+                xAxis.setCategories(yearList);
+            }
+        }
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author Ethann-Buen
+     */
     @FXML
     private void T22_onClickClear() {
         /*
             Your Code Here.
             Reset the Page Task 2.2. (including the choice boxes, check boxes and charts)
          */
+        t2CountryRegion1ChoiceBox.getSelectionModel().clearSelection();
+        t2CountryRegion2ChoiceBox.getSelectionModel().clearSelection();
+
+        t22017CheckBox2.setSelected(false);
+        t22018CheckBox2.setSelected(false);
+        t22019CheckBox2.setSelected(false);
+        t22020CheckBox2.setSelected(false);
+        t22021CheckBox2.setSelected(false);
+        t22022CheckBox2.setSelected(false);
+
+        t22RankBarChart.getData().clear();
+        t22ScoreBarChart.getData().clear();
+        t22FacultyBarChart.getData().clear();
+        t22InternationalBarChart.getData().clear();
+        t22SFRBarChart.getData().clear();
+
+        t22LineChart.getData().clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the comparison results from the Task 2.2 Analyzer.
+     * @author Ethann-Buen
+     */
     @FXML
     private void T22_onClickCompare() {
         /*
@@ -346,6 +493,73 @@ public class Controller {
                 5. Update the Bar Charts, which shows the average of selected property.
                 6. Update the line Chart, which shows two lines of score of each year.
          */
+        String country_region_1 = t2CountryRegion1ChoiceBox.getValue();
+        String country_region_2 = t2CountryRegion2ChoiceBox.getValue();
+
+        List<String> years = new ArrayList<>();
+
+        CheckBox[] checkBoxes = {
+                t22017CheckBox2,
+                t22018CheckBox2,
+                t22019CheckBox2,
+                t22020CheckBox2,
+                t22021CheckBox2,
+                t22022CheckBox2};
+
+        for (int i = 0; i < checkBoxes.length; i++) {
+            CheckBox curBox = checkBoxes[i];
+            String curYear = yearList.get(i);
+            if (curBox.isSelected()) {
+                years.add(curYear);
+            }
+        }
+
+        String[] properties = {"rank", "score", "facultyCount", "internationalStudents", "studentFacultyRatio"};
+        BarChart<Double, String>[] charts = new BarChart[]{
+                t22RankBarChart,
+                t22ScoreBarChart,
+                t22FacultyBarChart,
+                t22InternationalBarChart,
+                t22SFRBarChart};
+
+        if (country_region_1 == null || country_region_2 == null || country_region_1.equals("--") || country_region_2.equals("--") || years.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No Country/Region or Year Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please ensure that BOTH countries/regions have been chosen and at least one year is selected.");
+            alert.showAndWait();
+        }
+        else {
+            T22Analysis analyzer = new T22Analysis(country_region_1, country_region_2, years);
+
+            if (analyzer.CountryRegion1List.isEmpty() || analyzer.CountryRegion2List.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Years - Countries");
+                alert.setHeaderText(null);
+                alert.setContentText("At least one country/region selected has no data for the selected year/s!");
+                alert.showAndWait();
+            }
+            else {
+                t22RankBarChart.getData().clear();
+                t22ScoreBarChart.getData().clear();
+                t22FacultyBarChart.getData().clear();
+                t22InternationalBarChart.getData().clear();
+                t22SFRBarChart.getData().clear();
+                t22LineChart.getData().clear();
+
+                for (int i = 0; i < properties.length; i++) {
+                    charts[i].getData().add(analyzer.getBarChartData(properties[i]));
+                }
+
+                List<XYChart.Series<String, Double>> lineData = analyzer.getLineChartData("score");
+                for (XYChart.Series<String, Double> line : lineData) {
+                    t22LineChart.getData().add(line);
+                }
+                CategoryAxis xAxis = (CategoryAxis) t22LineChart.getXAxis();
+                xAxis.setAutoRanging(true);
+                xAxis.setCategories(yearList);
+            }
+        }
     }
 
     @FXML
@@ -354,6 +568,12 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
+        t3infolabel.setText("Please enter the ranking range, type and region");
+        t3TableView.getItems().clear();
+        t3RegionChoiceBox.setValue("");
+        t3TypeChoiceBox.setValue("");
+        t3TopRankTextField.clear();
+        t3BottomRankTextField.clear();
     }
 
     @FXML
@@ -367,6 +587,31 @@ public class Controller {
                 4. Make an Analyser.
                 5. Update the Table View.
          */
+        int topBoundary = Integer.parseInt(t3TopRankTextField.getText());
+        int bottomBoundary = Integer.parseInt(t3BottomRankTextField.getText());
+        String typeRequired = t3TypeChoiceBox.getValue();
+        String regionRequired = t3RegionChoiceBox.getValue();
+        t3TableView.getItems().clear();
+        if(typeRequired.isEmpty() || regionRequired.isEmpty()){
+            t3infolabel.setText("Please enter the region and type of university");
+        } else if ((topBoundary - 1 < 0 && !t3TopRankTextField.getText().isBlank() ) || (bottomBoundary - 400 > 0 && !t3TopRankTextField.getText().isBlank())) {
+            t3infolabel.setText("Rankings should range from 1 to 400");
+        } else{
+            T3Analysis t3Analyser = new T3Analysis(t3TopRankTextField.getText(),t3BottomRankTextField.getText(),typeRequired,regionRequired);
+            t3infolabel.setText("Based on your input these universities you can prefer for higher education");
+
+            t3TableView.setItems(t3Analyser.getRecommendData());
+            t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
+            t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));
+            t3BestRank.setCellValueFactory(new PropertyValueFactory<>("bestRank"));
+            t3RecentYear.setCellValueFactory(new PropertyValueFactory<>("recentYear"));
+            t3RecentRank.setCellValueFactory(new PropertyValueFactory<>("recentRank"));
+
+            t3BestYear.setComparator(new NumericalStringComparator());
+            t3BestRank.setComparator(new NumericalStringComparator());
+            t3RecentRank.setComparator(new NumericalStringComparator());
+            t3RecentYear.setComparator(new NumericalStringComparator());
+        }
     }
 
 }
