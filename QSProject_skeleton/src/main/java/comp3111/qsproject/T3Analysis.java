@@ -33,7 +33,7 @@ public class T3Analysis {
             int top_rank = Integer.parseInt(top_input);
             int bottom_rank = Integer.parseInt(bottom_input);
             if (((uni_rank - top_rank) >= 0 || top_input.isBlank()) && ((uni_rank-bottom_rank) <= 0 || bottom_input.isBlank())) {
-                if ((uni_type.equals(type)||type.equals("ALL")) && (uni_region.equals(region) || region.equals("ALL"))) {
+                if ((uni_type.equals(type)||type.equals("ALL") || uni_type.isBlank()) && (uni_region.equals(region) || region.equals("ALL"))) {
                     //update best rank if this uni is already a RecommendItem
                     for (RecommendItem recommendItem : RecommendList) {
                         if (recommendItem.getName().equals(item.getName()) && !updated) {

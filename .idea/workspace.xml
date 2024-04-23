@@ -7,6 +7,7 @@
     <list default="true" id="d61d4833-95a8-4ecf-9a43-3a8500a2aa5b" name="Changes" comment="T3:Optimise text display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/RecommendItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/RecommendItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/QSProject_skeleton/src/main/java/comp3111/qsproject/T3Analysis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
