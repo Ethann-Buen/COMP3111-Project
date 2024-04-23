@@ -4,9 +4,10 @@ import com.csvreader.CsvReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 /**
@@ -20,10 +21,6 @@ public class QSList {
     public static ObservableList<String> region = FXCollections.observableArrayList();
     public static ObservableList<String> country = FXCollections.observableArrayList();
 
-    /**
-     * Extracts the raw data from qs.csv into a static QSList object.
-     * @author Ethann-Buen
-     */
     public static void initialize() {
         /*
             Your Code Here.
@@ -35,7 +32,7 @@ public class QSList {
 
         CsvReader csvReader = null;
         try {
-            csvReader = new CsvReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+            csvReader = new CsvReader(file);
             try {
                 csvReader.readHeaders();
                 int fieldCount = csvReader.getHeaderCount();

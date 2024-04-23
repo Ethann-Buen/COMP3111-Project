@@ -16,39 +16,10 @@ public class T1Analysis {
             Use static properties in QSList here.
             Hint: QSList.list is a static property.
          */
-        for (QSItem qsItem : QSList.list) {
-            String qsItemYear = qsItem.getProperty("year");
-            if (qsItemYear.equals(year)) {
-                tableList.add(qsItem);
-            }
-        }
     }
 
     ObservableList<QSItem> getTableList() {
         return tableList;
-    }
-
-    ObservableList<String> getKeyList(String searchName) {
-        switch (searchName) {
-            case "country" -> {
-                return QSList.country;
-            }
-            case "region" -> {
-                return QSList.region;
-            }
-            case "size" -> {
-                return FXCollections.observableArrayList("S", "M", "L", "XL");
-            }
-            case "type" -> {
-                return FXCollections.observableArrayList("Public", "Private");
-            }
-            case "researchOutput" -> {
-                return FXCollections.observableArrayList("Medium", "High", "Very high");
-            }
-            default -> {
-                return FXCollections.observableArrayList();
-            }
-        }
     }
 
     ObservableList<PieChart.Data> getPieChartData(String searchName) {
@@ -65,27 +36,6 @@ public class T1Analysis {
                 key: "S", value: the Sum score of the Small size universities,
             ]
          */
-
-        ObservableList<String> keyList = getKeyList(searchName);
-        double[] sumList = new double[keyList.size()];
-
-        for (QSItem qsItem : tableList) {
-            String score = qsItem.getScore();
-            if (score.equals(""))
-                continue;
-            String property = qsItem.getProperty(searchName);
-
-            for (int j = 0; j < keyList.size(); j++) {
-                if (keyList.get(j).equals(property)) {
-                    sumList[j] += Double.parseDouble(score);
-                }
-            }
-        }
-
-        for (int j = 0; j < keyList.size(); j++) {
-            PieChart.Data datum = new PieChart.Data(keyList.get(j), sumList[j]);
-            pieChartData.add(datum);
-        }
         return pieChartData;
     }
 
@@ -103,33 +53,8 @@ public class T1Analysis {
                 key: "S", value: the Average score of the Small size universities,
             ]
          */
-        ObservableList<String> keyList = getKeyList(searchName);
-        double[] sumList = new double[keyList.size()];
-        int[] countList = new int[keyList.size()];
-
-        for (QSItem qsItem : tableList) {
-            String score = qsItem.getScore();
-            if (score.equals(""))
-                continue;
-            String property = qsItem.getProperty(searchName);
-
-            for (int j = 0; j < keyList.size(); j++) {
-                if (keyList.get(j).equals(property)) {
-                    sumList[j] += Double.parseDouble(score);
-                    countList[j] += 1;
-                }
-            }
-        }
-
-        for (int j = 0; j < keyList.size(); j++) {
-            double average = 0.0;
-            if (countList[j] != 0) {
-                average = sumList[j]/countList[j];
-            }
-            XYChart.Data<String, Double> datum = new XYChart.Data<>(keyList.get(j), average);
-            barData.getData().add(datum);
-        }
         return barData;
     }
+
 
 }
