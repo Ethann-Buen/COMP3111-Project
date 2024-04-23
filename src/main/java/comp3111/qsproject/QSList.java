@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 /**
@@ -30,7 +31,7 @@ public class QSList {
 
         CsvReader csvReader = null;
         try {
-            csvReader = new CsvReader(file);
+            csvReader = new CsvReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             try {
                 csvReader.readHeaders();
                 int fieldCount = csvReader.getHeaderCount();
