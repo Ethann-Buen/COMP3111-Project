@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import javafx.scene.control.Alert;
 
 public class Controller {
 
@@ -150,8 +151,6 @@ public class Controller {
 
     @FXML
     public TableColumn<RecommendItem, String> t3RecentRank;
-    @FXML
-    public Label t3infolabel;
 
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
@@ -227,7 +226,6 @@ public class Controller {
         t3RegionChoiceBox.setItems(QSList.region);
         t3TypeChoiceBox.getItems().add("ALL");
         t3RegionChoiceBox.getItems().add("ALL");
-        t3infolabel.setText("Please fill in the region and the type of the universities");
         T3_onClickClear();
     }
 
@@ -562,13 +560,16 @@ public class Controller {
         }
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author sq0519
+     */
     @FXML
     private void T3_onClickClear() {
         /*
             Your Code Here.
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
-        t3infolabel.setText("Please enter the ranking range, type and region");
         t3TableView.getItems().clear();
         t3RegionChoiceBox.setValue("");
         t3TypeChoiceBox.setValue("");
@@ -576,6 +577,10 @@ public class Controller {
         t3BottomRankTextField.clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the recommendation results from the Task 3 Analyzer.
+     * @author sq0519
+     */
     @FXML
     private void T3_onClickRecommend() {
         /*
@@ -587,19 +592,34 @@ public class Controller {
                 4. Make an Analyser.
                 5. Update the Table View.
          */
-        int topBoundary = Integer.parseInt(t3TopRankTextField.getText());
-        int bottomBoundary = Integer.parseInt(t3BottomRankTextField.getText());
+        String topBoundary = t3TopRankTextField.getText();
+        String bottomBoundary = t3BottomRankTextField.getText();
         String typeRequired = t3TypeChoiceBox.getValue();
         String regionRequired = t3RegionChoiceBox.getValue();
         t3TableView.getItems().clear();
+
+        boolean rangeError = false;
+        if(!topBoundary.isBlank() && (Integer.parseInt(topBoundary) < 1 || Integer.parseInt(topBoundary) > 400) ){
+            rangeError = true;
+        }
+        if(!bottomBoundary.isBlank() && (Integer.parseInt(bottomBoundary) < 1 || Integer.parseInt(bottomBoundary) > 400) ){
+            rangeError = true;
+        }
+
         if(typeRequired.isEmpty() || regionRequired.isEmpty()){
-            t3infolabel.setText("Please enter the region and type of university");
-        } else if ((topBoundary - 1 < 0 && !t3TopRankTextField.getText().isBlank() ) || (bottomBoundary - 400 > 0 && !t3TopRankTextField.getText().isBlank())) {
-            t3infolabel.setText("Rankings should range from 1 to 400");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("No Type Or Region Filled In");
+            alert.setHeaderText(null);
+            alert.setContentText("Please ensure that both type and region are filled in.");
+            alert.showAndWait();
+        } else if (rangeError) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Illegal Ranking Range");
+            alert.setHeaderText(null);
+            alert.setContentText("Please make sure the ranking range is 1 to 400.");
+            alert.showAndWait();
         } else{
             T3Analysis t3Analyser = new T3Analysis(t3TopRankTextField.getText(),t3BottomRankTextField.getText(),typeRequired,regionRequired);
-            t3infolabel.setText("Based on your input these universities you can prefer for higher education");
-
             t3TableView.setItems(t3Analyser.getRecommendData());
             t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
             t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));

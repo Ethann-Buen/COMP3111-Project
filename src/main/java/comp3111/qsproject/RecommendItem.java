@@ -19,6 +19,11 @@ public class RecommendItem {
         recentRank = item.rank;
     }
 
+    /**
+     * Update the bestYear, bestRank, recentYear and recentRank for University
+     * @param item QSItem with information of university
+     * @author sq0519
+     */
     void update(QSItem item) {
         assert (item.name.equals(name));
         /*
@@ -27,11 +32,11 @@ public class RecommendItem {
             1. Update the best rank and the corresponding year.
             2. Update the most recent year and the corresponding rank.
          */
-        if(item.getRank().compareTo(bestRank) < 0){
+        if(item.rank.compareTo(bestRank) < 0){
             bestYear = item.year;
             bestRank = item.rank;
         }
-        if(item.getYear().compareTo(recentYear) > 0 ){
+        if(item.year.compareTo(recentYear) > 0 ){
             recentYear = item.year;
             recentRank = item.rank;
         }
