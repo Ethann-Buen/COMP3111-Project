@@ -21,6 +21,7 @@ public class RecommendItem {
 
     /**
      * Update the bestYear, bestRank, recentYear and recentRank for University
+     * @param item QSItem with information of university
      * @author sq0519
      */
     void update(QSItem item) {
