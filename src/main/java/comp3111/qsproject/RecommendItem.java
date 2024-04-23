@@ -19,6 +19,10 @@ public class RecommendItem {
         recentRank = item.rank;
     }
 
+    /**
+     * Update the bestYear, bestRank, recentYear and recentRank for University
+     * @author sq0519
+     */
     void update(QSItem item) {
         assert (item.name.equals(name));
         /*

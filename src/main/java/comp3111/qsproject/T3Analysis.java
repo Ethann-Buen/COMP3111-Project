@@ -12,12 +12,26 @@ import java.util.Map;
 public class T3Analysis implements Comparator<RecommendItem> {
     public ObservableList<RecommendItem> RecommendList = FXCollections.observableArrayList();
 
+
+    /**
+     * @return Comparison results of two RecommendItem based on rankings
+     * @author sq0519
+     */
     @Override
     public int compare(RecommendItem item1, RecommendItem item2) {
         int rank1 = Integer.parseInt(item1.getBestRank());
         int rank2 = Integer.parseInt(item2.getBestRank());
         return Integer.compare(rank1, rank2);
     }
+
+    /**
+     * Constructor for Task 3 Analyzer. It extracts university data from QSList.list for further processing.
+     * @param top_input top boundary of ranking range
+     * @param bottom_input bottom boundary of ranking range
+     * @param type type of universities
+     * @param region region of universities
+     * @author sq0519
+     */
     T3Analysis (String top_input, String bottom_input, String type, String region) {
         /*
             Your Code Here.

@@ -560,6 +560,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Resets all the elements in the UI by clearing all data
+     * @author sq0519
+     */
     @FXML
     private void T3_onClickClear() {
         /*
@@ -573,6 +577,10 @@ public class Controller {
         t3BottomRankTextField.clear();
     }
 
+    /**
+     * Fetches all the user inputs, and outputs the recommendation results from the Task 3 Analyzer.
+     * @author sq0519
+     */
     @FXML
     private void T3_onClickRecommend() {
         /*
