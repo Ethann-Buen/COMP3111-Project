@@ -78,6 +78,11 @@ public class QSItem {
         return facultyCount;
     }
 
+    /**
+     * Fetches the QSItem's attribute based on the inputted string
+     * @param property The inputted string denoting the property to be returned
+     * @author Ethann-Buen
+     */
     String getProperty(String property) {
         String propertyValue = new String();
         /*

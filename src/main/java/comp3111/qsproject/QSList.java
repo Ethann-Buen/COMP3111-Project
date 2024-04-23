@@ -20,6 +20,10 @@ public class QSList {
     public static ObservableList<String> region = FXCollections.observableArrayList();
     public static ObservableList<String> country = FXCollections.observableArrayList();
 
+    /**
+     * Extracts the raw data from qs.csv into a static QSList object.
+     * @author Ethann-Buen
+     */
     public static void initialize() {
         /*
             Your Code Here.
@@ -63,6 +67,10 @@ public class QSList {
                         country.add(qsCountry);
                     }
                 }
+                FXCollections.sort(university);
+                FXCollections.sort(type);
+                FXCollections.sort(region);
+                FXCollections.sort(country);
             }
             catch (IOException e) {
                 e.printStackTrace();
