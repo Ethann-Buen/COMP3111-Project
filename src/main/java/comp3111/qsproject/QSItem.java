@@ -20,8 +20,9 @@ public class QSItem {
     public String internationalStudents;
     public String size;
     public String facultyCount;
+
     QSItem(String[] string_line) {
-        assert(string_line.length == 15);
+        assert (string_line.length == 15);
         name = string_line[0];
         year = string_line[1];
         rank = string_line[2];
@@ -41,23 +42,33 @@ public class QSItem {
         return rank;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getScore() { return score; }
+    public String getScore() {
+        return score;
+    }
 
-    public String getCountry() { return country; }
+    public String getCountry() {
+        return country;
+    }
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public String getType() { return type; }
+    public String getType() {
+        return type;
+    }
 
-    public String getRegion() { return region; }
+    public String getResearchOutput() {
+        return researchOutput;
+    }
 
-    public String getYear() { return year; }
-
-    public String getResearchOutput() { return researchOutput; }
-
-    public String getStudentFacultyRatio() {return  studentFacultyRatio; }
+    public String getStudentFacultyRatio() {
+        return studentFacultyRatio;
+    }
 
     public String getInternationalStudents() {
         return internationalStudents;
@@ -67,12 +78,25 @@ public class QSItem {
         return facultyCount;
     }
 
+    /**
+     * Fetches the QSItem's attribute based on the inputted string
+     * @param property The inputted string denoting the property to be returned
+     * @author Ethann-Buen
+     */
     String getProperty(String property) {
         String propertyValue = new String();
         /*
             return the property value.
             use JAVA reflection.
          */
+        try {
+            Field field = getClass().getDeclaredField(property);
+            propertyValue = (String) field.get(this);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            propertyValue = null;
+            e.printStackTrace();
+        }
+
         return propertyValue;
     }
 }
