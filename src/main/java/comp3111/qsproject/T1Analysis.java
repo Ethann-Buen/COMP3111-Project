@@ -24,10 +24,18 @@ public class T1Analysis {
         }
     }
 
+    /**
+     * Gets the Table List.
+     * @author phmakaa
+     */
     ObservableList<QSItem> getTableList() {
         return tableList;
     }
 
+    /**
+     * Gets the Key List.
+     * @author phmakaa
+     */
     ObservableList<String> getKeyList(String searchName) {
         switch (searchName) {
             case "country" -> {
@@ -51,6 +59,10 @@ public class T1Analysis {
         }
     }
 
+    /**
+     * Gets the Pie Chart Data, showing the sum of the score.
+     * @author phmakaa
+     */
     ObservableList<PieChart.Data> getPieChartData(String searchName) {
         ObservableList<PieChart.Data> pieChartData= FXCollections.observableArrayList();
         /*
@@ -89,6 +101,10 @@ public class T1Analysis {
         return pieChartData;
     }
 
+    /**
+     * Gets the Bar Chart Data, showing the average of the score.
+     * @author phmakaa
+     */
     XYChart.Series<String, Double> getBarChartData(String searchName) {
         XYChart.Series<String, Double> barData= new XYChart.Series<>();
         /*
