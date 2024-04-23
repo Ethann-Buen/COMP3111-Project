@@ -150,6 +150,8 @@ public class Controller {
 
     @FXML
     public TableColumn<RecommendItem, String> t3RecentRank;
+    @FXML
+    public Label t3infolabel;
 
     ObservableList<String> yearList = FXCollections.observableArrayList("2017", "2018", "2019", "2020", "2021", "2022");
     ObservableList<String> stringPropertyList = FXCollections.observableArrayList("country", "region", "size", "type", "researchOutput");
@@ -221,6 +223,12 @@ public class Controller {
             3. For choice boxes of region,
                 you need to add a blank or "All" option representing selection of all the region.
          */
+        t3TypeChoiceBox.setItems(QSList.type);
+        t3RegionChoiceBox.setItems(QSList.region);
+        t3TypeChoiceBox.getItems().add("ALL");
+        t3RegionChoiceBox.getItems().add("ALL");
+        t3infolabel.setText("Please fill in the region and the type of the universities");
+        T3_onClickClear();
     }
 
     /**
@@ -560,6 +568,12 @@ public class Controller {
             Your Code Here.
             Reset the Page Task 2.2. (including the text fields, choice boxes and the table view)
          */
+        t3infolabel.setText("Please enter the ranking range, type and region");
+        t3TableView.getItems().clear();
+        t3RegionChoiceBox.setValue("");
+        t3TypeChoiceBox.setValue("");
+        t3TopRankTextField.clear();
+        t3BottomRankTextField.clear();
     }
 
     @FXML
@@ -573,6 +587,31 @@ public class Controller {
                 4. Make an Analyser.
                 5. Update the Table View.
          */
+        int topBoundary = Integer.parseInt(t3TopRankTextField.getText());
+        int bottomBoundary = Integer.parseInt(t3BottomRankTextField.getText());
+        String typeRequired = t3TypeChoiceBox.getValue();
+        String regionRequired = t3RegionChoiceBox.getValue();
+        t3TableView.getItems().clear();
+        if(typeRequired.isEmpty() || regionRequired.isEmpty()){
+            t3infolabel.setText("Please enter the region and type of university");
+        } else if ((topBoundary - 1 < 0 && !t3TopRankTextField.getText().isBlank() ) || (bottomBoundary - 400 > 0 && !t3TopRankTextField.getText().isBlank())) {
+            t3infolabel.setText("Rankings should range from 1 to 400");
+        } else{
+            T3Analysis t3Analyser = new T3Analysis(t3TopRankTextField.getText(),t3BottomRankTextField.getText(),typeRequired,regionRequired);
+            t3infolabel.setText("Based on your input these universities you can prefer for higher education");
+
+            t3TableView.setItems(t3Analyser.getRecommendData());
+            t3University.setCellValueFactory(new PropertyValueFactory<>("name"));
+            t3BestYear.setCellValueFactory(new PropertyValueFactory<>("bestYear"));
+            t3BestRank.setCellValueFactory(new PropertyValueFactory<>("bestRank"));
+            t3RecentYear.setCellValueFactory(new PropertyValueFactory<>("recentYear"));
+            t3RecentRank.setCellValueFactory(new PropertyValueFactory<>("recentRank"));
+
+            t3BestYear.setComparator(new NumericalStringComparator());
+            t3BestRank.setComparator(new NumericalStringComparator());
+            t3RecentRank.setComparator(new NumericalStringComparator());
+            t3RecentYear.setComparator(new NumericalStringComparator());
+        }
     }
 
 }
