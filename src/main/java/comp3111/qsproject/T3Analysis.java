@@ -49,11 +49,8 @@ public class T3Analysis implements Comparator<RecommendItem> {
 
             boolean inRange = false;
 
-            if (top_input.isBlank() ||  uni_rank >= Integer.parseInt(top_input)) {
-                inRange = true;
-            }
-
-            if (bottom_input.isBlank() || uni_rank <= Integer.parseInt(bottom_input)) {
+            if ((top_input.isBlank() ||  uni_rank >= Integer.parseInt(top_input))
+                    && (bottom_input.isBlank() || uni_rank <= Integer.parseInt(bottom_input))) {
                 inRange = true;
             }
 
