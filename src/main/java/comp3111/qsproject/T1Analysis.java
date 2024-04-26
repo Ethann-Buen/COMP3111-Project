@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
-import java.util.*;
-
 public class T1Analysis {
     public ObservableList<QSItem> tableList = FXCollections.observableArrayList();
     T1Analysis (String year) {
@@ -24,10 +22,19 @@ public class T1Analysis {
         }
     }
 
+    /**
+     * Gets the Table List.
+     * @author phmakaa
+     */
     ObservableList<QSItem> getTableList() {
         return tableList;
     }
 
+    /**
+     * Gets the Key List.
+     * @author phmakaa
+     * @param searchName Aspect of keys to classify universities.
+     */
     ObservableList<String> getKeyList(String searchName) {
         switch (searchName) {
             case "country" -> {
@@ -51,6 +58,11 @@ public class T1Analysis {
         }
     }
 
+    /**
+     * Gets the Pie Chart Data, showing the sum of the score.
+     * @author phmakaa
+     * @param searchName Aspect of keys to classify universities.
+     */
     ObservableList<PieChart.Data> getPieChartData(String searchName) {
         ObservableList<PieChart.Data> pieChartData= FXCollections.observableArrayList();
         /*
@@ -71,7 +83,7 @@ public class T1Analysis {
 
         for (QSItem qsItem : tableList) {
             String score = qsItem.getScore();
-            if (score.equals(""))
+            if (score.isEmpty())
                 continue;
             String property = qsItem.getProperty(searchName);
 
@@ -89,6 +101,11 @@ public class T1Analysis {
         return pieChartData;
     }
 
+    /**
+     * Gets the Bar Chart Data, showing the average of the score.
+     * @author phmakaa
+     * @param searchName Aspect of keys to classify universities.
+     */
     XYChart.Series<String, Double> getBarChartData(String searchName) {
         XYChart.Series<String, Double> barData= new XYChart.Series<>();
         /*
@@ -109,7 +126,7 @@ public class T1Analysis {
 
         for (QSItem qsItem : tableList) {
             String score = qsItem.getScore();
-            if (score.equals(""))
+            if (score.isEmpty())
                 continue;
             String property = qsItem.getProperty(searchName);
 

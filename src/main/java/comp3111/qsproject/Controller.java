@@ -311,7 +311,7 @@ public class Controller {
         String year = t1YearChoiceBox.getValue();
         T1Analysis analyzer = new T1Analysis(year);
 
-        t1DataTable.setItems(analyzer.tableList);
+        t1DataTable.setItems(analyzer.getTableList());
         t1Rank.setCellValueFactory(new PropertyValueFactory<QSItem, String>("rank"));
         t1University.setCellValueFactory(new PropertyValueFactory<QSItem, String>("name"));
         t1Score.setCellValueFactory(new PropertyValueFactory<QSItem, String>("score"));
