@@ -76,7 +76,6 @@ public class T22Analysis {
          */
         Double[] country_region_1 = new Double[CountryRegion1List.size()];
         Double[] country_region_2 = new Double[CountryRegion2List.size()];
-//        System.out.println("property: " + searchName);
         // Country/Region 1
         int invalidCount1 = 0;
         for (int i = 0; i < CountryRegion1List.size(); i++) {
@@ -96,7 +95,6 @@ public class T22Analysis {
             else {
                 country_region_1[i] = Double.parseDouble(property);
             }
-//            System.out.println("country 1 data: " + country_region_1[i]);
         }
 
         // University 2
@@ -118,7 +116,6 @@ public class T22Analysis {
             else {
                 country_region_2[i] = Double.parseDouble(property);
             }
-//            System.out.println("country 2 data: " + country_region_2[i]);
         }
 
         Double average1 = 0.0;
@@ -141,7 +138,6 @@ public class T22Analysis {
         barData.getData().add(new XYChart.Data<>(average2, "Country/Region 2"));
         barData.getData().add(new XYChart.Data<>(average1, "Country/Region 1"));
 
-//        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
 
@@ -185,7 +181,6 @@ public class T22Analysis {
         }
 
         sum += score;
-        System.out.println("Score: " + score);
         for (int i = 0; i < CountryRegion1List.size()-1; i++) {
             QSItem qsItem = CountryRegion1List.get(i+1);
             String year = qsItem.getProperty("year");
@@ -198,7 +193,7 @@ public class T22Analysis {
                 score = 0.0;
                 isValid = false;
             }
-            System.out.println("Score: " + score);
+
             if (year.equals(initialYear)) {
                 sum += score;
                 if (isValid) {
@@ -208,7 +203,6 @@ public class T22Analysis {
             else {
                 sum /= count;
                 countryRegionScores1.getData().add(new XYChart.Data<>(initialYear, sum)); // Store the sums of data from previous years
-                System.out.println(CountryRegion1Name + " Year: " + initialYear + " Sum: " + sum);
                 sum = score; // Update the score to be the current score
                 initialYear = year; // Update the initial year
                 if (isValid) {
@@ -219,7 +213,6 @@ public class T22Analysis {
                 }
             }
         }
-        System.out.println(CountryRegion1Name + "Year: " + initialYear + "Sum: " + sum);
         sum /= count;
         countryRegionScores1.getData().add(new XYChart.Data<>(initialYear, sum)); // Handle the last year (there will be no more years after)
         lineData.add(countryRegionScores1);
@@ -242,7 +235,6 @@ public class T22Analysis {
             count = 0;
         }
         sum += score;
-        System.out.println("Score: " + score);
         for (int i = 0; i < CountryRegion2List.size()-1; i++) {
             QSItem qsItem = CountryRegion2List.get(i+1);
             String year = qsItem.getProperty("year");
@@ -255,7 +247,6 @@ public class T22Analysis {
                 score = 0.0;
                 isValid = false;
             }
-            System.out.println("Score: " + score);
             if (year.equals(initialYear)) {
                 sum += score;
                 if (isValid) {
@@ -265,7 +256,6 @@ public class T22Analysis {
             else {
                 sum /= count;
                 countryRegionScores2.getData().add(new XYChart.Data<>(initialYear, sum)); // Store the sums of data from previous years
-                System.out.println(CountryRegion2Name + " Year: " + initialYear + " Sum: " + sum);
                 sum = score; // Update the score to be the current score
                 initialYear = year; // Update the initial year
                 if (isValid) {
@@ -276,7 +266,6 @@ public class T22Analysis {
                 }
             }
         }
-        System.out.println(CountryRegion2Name + "Year: " + initialYear + " Sum: " + sum);
         sum /= count;
         countryRegionScores2.getData().add(new XYChart.Data<>(initialYear, sum)); // Handle the last year (there will be no more years after)
         lineData.add(countryRegionScores2);

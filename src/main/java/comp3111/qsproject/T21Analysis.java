@@ -70,13 +70,11 @@ public class T21Analysis {
          */
         Double[] uni_1 = new Double[University1List.size()];
         Double[] uni_2 = new Double[University2List.size()];
-        System.out.println("property: " + searchName);
 
         // University 1
         int invalidCount1 = 0; // Stores number of missing data
         for (int i = 0; i < University1List.size(); i++) {
             String property = University1List.get(i).getProperty(searchName);
-            System.out.println(University1Name + " data: " + property);
             // Integral properties
             if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
                 property = property.replace(",", "").replace(".", "");
@@ -98,7 +96,6 @@ public class T21Analysis {
         int invalidCount2 = 0; // Stores number of missing data
         for (int i = 0; i < University2List.size(); i++) {
             String property = University2List.get(i).getProperty(searchName);
-            System.out.println(University2Name + " data: " + property);
             // Integral properties
             if (searchName.equals("internationalStudents") || searchName.equals("facultyCount")) {
                 property = property.replace(",", "").replace(".", "");
@@ -137,7 +134,6 @@ public class T21Analysis {
         barData.getData().add(new XYChart.Data<>(average2, "University 2"));
         barData.getData().add(new XYChart.Data<>(average1, "University 1"));
 
-        System.out.println("average 1: " + average1 + " average 2: " + average2);
         return barData;
     }
 
@@ -165,11 +161,9 @@ public class T21Analysis {
          */
         // University 1
         XYChart.Series<String, Double> uniScores1 = new XYChart.Series<>();
-        System.out.println(University1Name);
         uniScores1.setName(University1Name);
         for (QSItem qsItem : University1List) {
             String year = qsItem.getProperty("year");
-            System.out.println(year);
             String property = qsItem.getProperty(searchName);
             if (!(property == null || property.isEmpty())) {
                 Double score = Double.parseDouble(property.replace(",", "."));
@@ -179,11 +173,9 @@ public class T21Analysis {
         lineData.add(uniScores1);
         // University 2
         XYChart.Series<String, Double> uniScores2 = new XYChart.Series<>();
-        System.out.println(University2Name);
         uniScores2.setName(University2Name);
         for (QSItem qsItem : University2List) {
             String year = qsItem.getProperty("year");
-            System.out.println(year);
             String property = qsItem.getProperty(searchName);
             if (!(property == null || property.isEmpty())) {
                 Double score = Double.parseDouble(property.replace(",", "."));

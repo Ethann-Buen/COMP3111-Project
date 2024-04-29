@@ -296,17 +296,12 @@ class T21AnalysisTest {
         T21Analysis analyzer = new T21Analysis(uni_1, uni_2, years);
         List<XYChart.Series<String, Double>> actual = analyzer.getLineChartData("score");
 
-//        System.out.println(expected.size());
         for (int i = 0; i < expected.size(); i++) {
             XYChart.Series<String, Double> expectedData = expected.get(i);
             XYChart.Series<String, Double> actualData = actual.get(i);
-            System.out.println(expectedData.getData());
-            System.out.println(actualData.getData());
             for (int j = 0; j < expectedData.getData().size(); j++) {;
                 XYChart.Data<String, Double> expectedPoint = expectedData.getData().get(j);
                 XYChart.Data<String, Double> actualPoint = actualData.getData().get(j);
-                System.out.println("year: " +expectedPoint.getXValue() + " " + actualPoint.getXValue());
-                System.out.println("data: "+expectedPoint.getYValue() + " " + actualPoint.getYValue());
                 assertEquals(expectedPoint.getXValue(), actualPoint.getXValue());
                 assertEquals(expectedPoint.getYValue(), actualPoint.getYValue(), 0.1);
             }
